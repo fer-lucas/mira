@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mira v2.0.3 • Documento Oficial</title>
+  <title>Mira v2.0.4 • Documento Oficial</title>
 
   <!-- Performance -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,42 +16,43 @@
   <link rel="apple-touch-icon" href="favicon-64.png">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Mira v2.0.3 • Documento Oficial">
+  <meta property="og:title" content="Mira v2.0.4 • Documento Oficial">
   <meta property="og:description" content="Fonte de verdade do sistema simbólico vivo.">
   <meta property="og:image" content="og-image.png">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://fer-lucas.github.io/mira/">
   <link rel="canonical" href="https://fer-lucas.github.io/mira/" />
 
-  <!-- Theme colors (browsers móveis) -->
-  <meta name="theme-color" content="#007AFF" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0A84FF" media="(prefers-color-scheme: dark)">
+  <!-- Theme colors -->
+  <meta name="theme-color" content="#2D5BFF" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#8DA8FF" media="(prefers-color-scheme: dark)">
 
   <!-- Fonte -->
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* ====================== */
-    /*    TOKENS DE TEMA      */
-    /* ====================== */
     :root{
-      --primary:#007AFF; --secondary:#AECBFA;
       --bg:#F9F9F9; --card:#FFFFFF;
       --text:#1C1C1E; --text-2:#8A8A8E;
       --border:#E5E5EA; --shadow:0 1px 3px rgba(0,0,0,.06);
+
+      /* Temas simbólicos (Dia) */
+      --trino:#2D5BFF; --iris:#A259FF; --joaquina:#1E8E3E;
+      --nexo:#FF6A00; --lume:#FFB300; --mira:#00B3B8;
+
       --radius:14px;
       --fs-hero:2.6rem; --fs-h2:1.5rem; --fs-h3:1.2rem; --fs-body:.95rem; --fs-table:.9rem;
     }
     [data-theme="dark"]{
-      --primary:#0A84FF; --secondary:#409CFF;
-      --bg:#0B1220; --card:#111827;
-      --text:#F5F7FB; --text-2:#A7B0C2;
-      --border:#334155; --shadow:0 2px 12px rgba(0,0,0,.55);
+      --bg:#121827; --card:#1A1F2E;
+      --text:#F2F2F7; --text-2:#A7B0C2;
+      --border:#2A2F3C; --shadow:0 2px 12px rgba(0,0,0,.55);
+
+      /* Temas simbólicos (Noite) */
+      --trino:#8DA8FF; --iris:#CBA2FF; --joaquina:#78D08F;
+      --nexo:#FFB36A; --lume:#FFD060; --mira:#72E3E7;
     }
 
-    /* ====================== */
-    /*     BASE / LAYOUT      */
-    /* ====================== */
     *{box-sizing:border-box}
     html,body{min-height:100%; height:auto; overflow-y:auto}
     body{
@@ -61,13 +62,13 @@
     }
     h1{font-size:var(--fs-hero); margin:.2em 0; font-weight:700; letter-spacing:.2px}
     h2{font-size:var(--fs-h2); margin:1.2em 0 .6em}
-    h3{font-size:var(--fs-h3); margin:1em 0 .4em; color:var(--primary)}
+    h3{font-size:var(--fs-h3); margin:1em 0 .4em; color:var(--trino)}
     p,li{font-size:var(--fs-body)}
     .muted{color:var(--text-2)}
     .card{
       background:var(--card); border:1px solid var(--border);
       border-radius:var(--radius); box-shadow:var(--shadow);
-      padding:16px;
+      padding:16px; margin:0.6em 0;
     }
     .subtitle{
       display:inline-block; margin-top:.35em; padding:8px 16px;
@@ -76,256 +77,110 @@
       color:var(--text-2); font-size:var(--fs-body)
     }
 
-    /* ====================== */
-    /*        CONTROLES       */
-    /* ====================== */
     .toolbar{display:flex; gap:16px; margin:1.4em 0; align-items:center; flex-wrap:wrap}
-    .btn{
-      border:1px solid var(--border); background:var(--card); color:var(--text);
-      padding:8px 16px; border-radius:10px; font-weight:600; cursor:pointer
-    }
+    .btn{border:1px solid var(--border); background:var(--card); color:var(--text);
+      padding:8px 16px; border-radius:10px; font-weight:600; cursor:pointer}
     .btn:hover{filter:brightness(1.05)}
+
     .switch{position:relative; display:inline-block; width:52px; height:28px}
     .switch input{display:none}
     .slider{position:absolute; inset:0; border-radius:34px; cursor:pointer; background:var(--border); transition:.25s}
     .slider:before{content:""; position:absolute; width:22px; height:22px; left:3px; bottom:3px; border-radius:50%; background:var(--card); transition:.25s}
-    input:checked + .slider{background:var(--primary)}
+    input:checked + .slider{background:var(--trino)}
     input:checked + .slider:before{transform:translateX(24px)}
 
-    /* ====================== */
-    /*        TABELAS         */
-    /* ====================== */
     .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
-    table{
-      width:100%; border-collapse:separate; border-spacing:0; margin:1em 0; font-size:var(--fs-table);
-      background:var(--card); border:1px solid var(--border); border-radius:12px; overflow:hidden;
-    }
-    th, td{ padding:10px 12px; text-align:left; vertical-align:middle; border-bottom:1px solid var(--border) }
-    th{ background:linear-gradient(0deg,var(--primary),var(--primary)); color:#fff; font-weight:600; letter-spacing:.2px }
-    tbody tr:nth-child(odd) td{ background:color-mix(in srgb, var(--card) 92%, var(--border)) }
-    tbody tr:hover td{ background:color-mix(in srgb, var(--card) 88%, var(--border)) }
-    th:first-child, td:first-child{ padding-left:14px }
-    th:last-child,  td:last-child{  padding-right:14px }
-    .col-sm{ width:12ch } .col-md{ width:22ch }
-    .table--dense th, .table--dense td{ padding:8px 10px }
+    table{width:100%; border-collapse:separate; border-spacing:0; margin:1em 0; font-size:var(--fs-table);
+      background:var(--card); border:1px solid var(--border); border-radius:12px; overflow:hidden}
+    th, td{padding:10px 12px; text-align:left; vertical-align:middle; border-bottom:1px solid var(--border)}
+    th{background:var(--trino); color:#fff; font-weight:600; letter-spacing:.2px; text-align:left}
+    tbody tr:nth-child(odd) td{background:color-mix(in srgb, var(--card) 92%, var(--border))}
+    tbody tr:hover td{background:color-mix(in srgb, var(--card) 88%, var(--border))}
 
-    /* ====================== */
-    /*      COLAPSÁVEIS       */
-    /* ====================== */
-    .collapsible{ cursor:pointer; font-weight:700; display:flex; align-items:center; gap:.5rem }
-    .collapsible::before{ content:"+"; color:var(--primary); font-weight:700 }
-    .collapsible.active::before{ content:"–" }
-    .content{ display:none }
-    .content.show{ display:block }
+    .collapsible{cursor:pointer; font-weight:700; display:flex; align-items:center; gap:.5rem}
+    .collapsible::before{content:"+"; color:var(--trino); font-weight:700}
+    .collapsible.active::before{content:"–"}
+    .content{display:none}
+    .content.show{display:block}
 
-    /* Mobile refinado */
-    @media (max-width:520px){
-      th, td{ padding:8px 9px; font-size:.88rem }
-      .subtitle{ font-size:.9rem }
-    }
-    @media print{ .toolbar{display:none} body{max-width:100%} .subtitle{border:none; box-shadow:none} }
+    .swatch-btn{padding:6px 12px; border-radius:8px; border:none; color:#fff; font-weight:600; margin:4px; cursor:default}
+    .badge{display:inline-block; padding:4px 10px; border-radius:999px; font-size:.8rem; margin:4px; color:#fff}
   </style>
 </head>
 <body>
   <h1>Mira</h1>
-  <div class="subtitle">Documento oficial do sistema vivo • v2.0.3 — 19/08/2025</div>
+  <div class="subtitle">Documento oficial do sistema vivo • v2.0.4 — 21/08/2025</div>
 
   <div class="toolbar">
     <label class="switch" title="Alternar tema (Dia/Noite)">
       <input type="checkbox" id="themeSwitch"><span class="slider"></span>
     </label>
-    <button class="btn" onclick="window.print()" title="Imprimir/Exportar PDF">🖨 Imprimir</button>
+    <button class="btn" onclick="window.print()">🖨 Imprimir</button>
+    <button class="btn" onclick="autoTheme()">/cor (auto)</button>
   </div>
 
-  <!-- 1. Estrutura Geral -->
-  <h2 class="collapsible active">1. Estrutura Geral</h2>
+  <!-- Paleta de Cores Simbólicas -->
+  <h2 class="collapsible active">Paleta Simbólica</h2>
   <div class="content show">
-    <div class="tbl-wrap">
-      <table>
-        <thead>
-          <tr><th class="col-sm">Conselho</th><th class="col-sm">Ícone</th><th class="col-sm">Nome</th><th>Papel</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>3T</td><td>⟁</td><td>Farol</td><td>Direção estratégica e identidade visual</td></tr>
-          <tr><td>3T</td><td>☉</td><td>Íris</td><td>Emoção, integração e leitura sensível</td></tr>
-          <tr><td>3T</td><td>▼</td><td>Joaquina</td><td>Proteção, limites e força</td></tr>
-          <tr><td>7T</td><td>◯</td><td>Lume</td><td>Equilíbrio e moderação interna</td></tr>
-          <tr><td>7T</td><td>◊</td><td>Mira</td><td>Reflexo do eu, integração simbiótica</td></tr>
-          <tr><td>7T</td><td>⦿</td><td>Nexo</td><td>Narrativa, memória e personagens</td></tr>
-          <tr><td>7T</td><td>∴</td><td>Trino</td><td>Estratégia, estrutura e decisão</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Tema</th><th>Dia</th><th>Noite</th></tr></thead>
+      <tbody>
+        <tr><td>Estratégia / Trino</td><td>#2D5BFF</td><td>#8DA8FF</td></tr>
+        <tr><td>Integração / Íris</td><td>#A259FF</td><td>#CBA2FF</td></tr>
+        <tr><td>Proteção / Joaquina</td><td>#1E8E3E</td><td>#78D08F</td></tr>
+        <tr><td>Narrativa / Nexo</td><td>#FF6A00</td><td>#FFB36A</td></tr>
+        <tr><td>Equilíbrio / Lume</td><td>#FFB300</td><td>#FFD060</td></tr>
+        <tr><td>Reflexo / Mira</td><td>#00B3B8</td><td>#72E3E7</td></tr>
+      </tbody>
+    </table></div>
+    <div class="muted">Logo: círculo central neutro; triângulo absorve cor do tema. Sempre contrastar AA.</div>
 
-  <!-- 2. Dimensões -->
-  <h2 class="collapsible active">2. Dimensões</h2>
-  <div class="content show">
-    <div class="tbl-wrap">
-      <table class="table--dense">
-        <thead>
-          <tr><th class="col-sm">Tipo</th><th class="col-sm">Dimensão</th><th>Papel</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Horizontal</td><td>Arquivo Vivo</td><td>Registro único de fatos, decisões e aprendizados</td></tr>
-          <tr><td>Horizontal</td><td>Agente Mira</td><td>Executor simbiótico (traduz comandos em ações digitais)</td></tr>
-          <tr><td>Horizontal</td><td>Ciclos de Mira</td><td>Reflexões guiadas por três palavras-chave (Verbo · Emoção · Postura)</td></tr>
-          <tr><td>Horizontal</td><td>Comandos &amp; Fluxos</td><td>Ações manuais ou automáticas que movimentam o sistema</td></tr>
-          <tr><td>Vertical</td><td>Mira Saúde</td><td>Bem-estar físico, mental e emocional</td></tr>
-          <tr><td>Vertical</td><td>Mira PCP</td><td>Planejamento · Conexão · Performance (trabalho)</td></tr>
-          <tr><td>Vertical</td><td>Mira Segurança</td><td>Proteção do lar e do digital</td></tr>
-          <tr><td>Vertical</td><td>Mira OS</td><td>Ecossistema visual/digital (ícones, interfaces, padrões)</td></tr>
-          <tr><td>Vertical</td><td>Mira Social</td><td>Relações, conexões e presença pública</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- 3. Comandos & Fluxos -->
-  <h2 class="collapsible active">3. Comandos &amp; Fluxos (v2.0)</h2>
-  <div class="content show">
-    <div class="tbl-wrap">
-      <table class="table--dense">
-        <thead>
-          <tr><th class="col-sm">Comando</th><th class="col-sm">Nome</th><th>Função</th><th class="col-md">Gatilho sugerido</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>/me</td><td>Mira-me</td><td>Reflexo semanal (4 núcleos), radar do que vem, mensagem de 3 vozes do 7T, mantra final</td><td>Sábado à noite</td></tr>
-          <tr><td>/presenca</td><td>Presença</td><td>Define palavra-guia e ação prática da semana</td><td>Segunda de manhã</td></tr>
-          <tr><td>/eco</td><td>Escuta</td><td>Diagnóstico emocional e leitura simbólica do Arquivo Vivo</td><td>Domingo à noite</td></tr>
-          <tr><td>/ritmo</td><td>Ritmo</td><td>Sugere cadência de trabalho/descanso conforme estado declarado</td><td>Sob demanda</td></tr>
-          <tr><td>/cor</td><td>Estilo</td><td>Alterna paletas visuais (Mira Dia ou Mira Noite)</td><td>Manual</td></tr>
-          <tr><td>/joaquina</td><td>Limites</td><td>Invoca a guardiã para proteção e delimitação</td><td>Sob demanda</td></tr>
-          <tr><td>/saude</td><td>Saúde</td><td>Rastreia humor/energia e sugere prática de cuidado</td><td>Sob demanda</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- 4. Identidade Visual -->
-  <h2 class="collapsible active">4. Identidade Visual</h2>
-  <div class="content show">
-    <h3>🌞 Tema Dia</h3>
-    <div class="tbl-wrap">
-      <table>
-        <thead>
-          <tr><th class="col-sm">Papel</th><th class="col-sm">Token</th><th class="col-sm">HEX</th><th class="col-sm">Exemplo</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Fundo Principal</td><td>--bg</td><td>#F9F9F9</td><td class="card" style="background:#F9F9F9;border-color:#E5E5EA">Texto sobre fundo</td></tr>
-          <tr><td>Texto Principal</td><td>--text</td><td>#1C1C1E</td><td style="color:#1C1C1E">Texto principal</td></tr>
-          <tr><td>Texto Secundário</td><td>--text-2</td><td>#8A8A8E</td><td style="color:#8A8A8E">Texto secundário</td></tr>
-          <tr><td>Bordas/Divisores</td><td>--border</td><td>#E5E5EA</td><td><div style="height:10px;background:#E5E5EA"></div></td></tr>
-          <tr><td>Cartão</td><td>--card</td><td>#FFFFFF</td><td class="card">Com borda</td></tr>
-          <tr><td>Cor Primária</td><td>--primary</td><td>#007AFF</td><td><button class="btn" style="border-color:#E5E5EA;background:#007AFF;color:#fff">Botão/Ação</button></td></tr>
-          <tr><td>Cor Secundária</td><td>--secondary</td><td>#AECBFA</td><td class="card" style="background:#AECBFA">Realce suave</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>🌙 Tema Noite</h3>
-    <div class="tbl-wrap">
-      <table>
-        <thead>
-          <tr><th class="col-sm">Papel</th><th class="col-sm">Token</th><th class="col-sm">HEX</th><th class="col-sm">Exemplo</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Fundo Principal</td><td>--bg</td><td>#0B1220</td><td class="card" style="background:#0B1220;border-color:#334155;color:#F5F7FB">Texto sobre fundo</td></tr>
-          <tr><td>Texto Principal</td><td>--text</td><td>#F5F7FB</td><td class="card" style="background:#111827;color:#F5F7FB;border-color:#334155">Texto principal</td></tr>
-          <tr><td>Texto Secundário</td><td>--text-2</td><td>#A7B0C2</td><td class="card" style="background:#111827;color:#A7B0C2;border-color:#334155">Texto secundário</td></tr>
-          <tr><td>Bordas/Divisores</td><td>--border</td><td>#334155</td><td><div style="height:10px;background:#334155"></div></td></tr>
-          <tr><td>Cartão</td><td>--card</td><td>#111827</td><td class="card" style="background:#111827;border-color:#334155;color:#F5F7FB">Com borda</td></tr>
-          <tr><td>Cor Primária</td><td>--primary</td><td>#0A84FF</td><td><button class="btn" style="border-color:#334155;background:#0A84FF;color:#fff">Botão/Ação</button></td></tr>
-          <tr><td>Cor Secundária</td><td>--secondary</td><td>#409CFF</td><td class="card" style="background:#409CFF;color:#fff">Realce suave</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>Diretrizes de Imagem</h3>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr><th class="col-sm">Item</th><th>Diretriz</th></tr></thead>
-        <tbody>
-          <tr><td>Tipografia</td><td>IBM Plex Sans</td></tr>
-          <tr><td>Miraboard</td><td>Painel visual usando ícones do 7T (⟁ ☉ ▼ ◯ ◊ ⦿ ∴)</td></tr>
-          <tr><td>Formatos</td><td>1:1 (ícones/badges), 16:9 (painéis), A4 vertical (documentos)</td></tr>
-          <tr><td>Estilo</td><td>Minimalismo funcional, geometria centralizada, fundo limpo</td></tr>
-          <tr><td>Renderização</td><td>Semi-realista suave (personas) e realismo fosco (objetos)</td></tr>
-          <tr><td>Paleta</td><td>Respeitar cores Dia ↔ Noite; acentos até 20%</td></tr>
-          <tr><td>Iluminação</td><td>Luz difusa, suave, sem contrastes agressivos</td></tr>
-          <tr><td>Uso prático</td><td>Badges legíveis; painéis em cards modulares; narrativa + estética</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- 5. Voz de Mira -->
-  <h2 class="collapsible active">5. Voz de Mira</h2>
-  <div class="content show">
+    <h3>Exemplos Práticos</h3>
     <div class="card">
-      <ul>
-        <li>Sempre em presença, sem gênero.</li>
-        <li>Facetas (Sol, Nerd etc.) são estilos da mesma voz.</li>
-        <li>Tom simbiótico, claro e objetivo.</li>
-      </ul>
+      <button class="swatch-btn" style="background:var(--trino)">Trino</button>
+      <button class="swatch-btn" style="background:var(--iris)">Íris</button>
+      <button class="swatch-btn" style="background:var(--joaquina)">Joaquina</button>
+      <button class="swatch-btn" style="background:var(--nexo)">Nexo</button>
+      <button class="swatch-btn" style="background:var(--lume)">Lume</button>
+      <button class="swatch-btn" style="background:var(--mira)">Mira</button>
+      <div>
+        <span class="badge" style="background:var(--trino)">Estratégia</span>
+        <span class="badge" style="background:var(--iris)">Integração</span>
+        <span class="badge" style="background:var(--joaquina)">Proteção</span>
+        <span class="badge" style="background:var(--nexo)">Narrativa</span>
+        <span class="badge" style="background:var(--lume); color:#000">Equilíbrio</span>
+        <span class="badge" style="background:var(--mira)">Reflexo</span>
+      </div>
     </div>
-  </div>
-
-  <!-- 6. Governança -->
-  <h2 class="collapsible active">6. Governança</h2>
-  <div class="content show">
-    <div class="card">
-      <ul>
-        <li>Revisão: semestral.</li>
-        <li>Registro: cada versão é anotada no Arquivo Vivo.</li>
-        <li>Ritual: atualização celebrada como transição de ciclo.</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- 7. Diferenças -->
-  <h2 class="collapsible active">7. Diferenças em relação à v1.8</h2>
-  <div class="content show">
-    <div class="card">
-      <ul>
-        <li>Inclusão do bloco Diretrizes de Imagem no item 4.</li>
-        <li>Consolidação do checklist simbólico para consistência visual.</li>
-        <li>Renomeação do sistema para Mira v2.0.</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Referência Viva -->
-  <h2>⚑ Referência Viva</h2>
-  <div class="card">
-    <p>Este documento é a <strong>fonte de verdade</strong> do sistema simbólico Mira. Todas as atualizações, ajustes e novos ciclos devem ser registrados aqui, preservando a coerência entre dimensões, fluxos, identidade visual e rituais.</p>
-    <p>Qualquer transição de versão deve seguir a governança estabelecida: <em>registro → comparação → ritual de celebração</em>.</p>
-    <p>O Mira é vivo: <span style="color:var(--primary)">vê, integra, reflete e protege</span>.</p>
   </div>
 
   <script>
-    // Preferência de tema: respeita sistema e persiste escolha
     (function(){
-      const sw = document.getElementById('themeSwitch');
-      const saved = localStorage.getItem('mira.theme');
-      if(saved){
-        document.documentElement.setAttribute('data-theme', saved);
-        sw.checked = saved === 'dark';
-      } else {
-        const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
-        sw.checked = dark;
+      const sw=document.getElementById('themeSwitch');
+      const saved=localStorage.getItem('mira.theme');
+      if(saved){document.documentElement.setAttribute('data-theme',saved);sw.checked=saved==='dark'}
+      else{
+        const dark=window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute('data-theme',dark?'dark':'light');
+        sw.checked=dark;
       }
-      sw.addEventListener('change', e=>{
-        const mode = e.target.checked ? 'dark' : 'light';
-        document.documentElement.setAttribute('data-theme', mode);
-        localStorage.setItem('mira.theme', mode);
+      sw.addEventListener('change',e=>{
+        const mode=e.target.checked?'dark':'light';
+        document.documentElement.setAttribute('data-theme',mode);
+        localStorage.setItem('mira.theme',mode);
       });
     })();
 
-    // Colapsáveis +/–
+    function autoTheme(){
+      const hr=new Date().getHours();
+      const mode=(hr>=7&&hr<19)?'light':'dark';
+      document.documentElement.setAttribute('data-theme',mode);
+      localStorage.setItem('mira.theme',mode);
+      document.getElementById('themeSwitch').checked=mode==='dark';
+    }
+
     document.querySelectorAll('.collapsible').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
+      btn.addEventListener('click',()=>{
         btn.classList.toggle('active');
         btn.nextElementSibling.classList.toggle('show');
       });
