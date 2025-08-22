@@ -9,13 +9,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
 
-  <!-- Favicons -->
+  <!-- Favicons (coloque estes arquivos na raiz do repo) -->
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="favicon-64.png">
 
-  <!-- Open Graph -->
+  <!-- Meta & Open Graph -->
+  <meta name="description" content="Mira vê, integra, reflete e protege. Documento oficial do sistema simbólico vivo.">
   <meta property="og:title" content="Mira v2.0.4 • Documento Oficial">
   <meta property="og:description" content="Fonte de verdade do sistema simbólico vivo.">
   <meta property="og:image" content="og-image.png">
@@ -23,34 +24,48 @@
   <meta property="og:url" content="https://fer-lucas.github.io/mira/">
   <link rel="canonical" href="https://fer-lucas.github.io/mira/" />
 
-  <!-- Theme colors -->
-  <meta name="theme-color" content="#2D5BFF" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#8DA8FF" media="(prefers-color-scheme: dark)">
+  <!-- Theme colors (harmonizado c/ Trino laranja no claro e Trino noite no escuro) -->
+  <meta name="theme-color" content="#FF6200" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#FFB36A" media="(prefers-color-scheme: dark)">
 
   <!-- Fonte -->
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
+      /* Base neutra (fixa) */
       --bg:#F9F9F9; --card:#FFFFFF;
       --text:#1C1C1E; --text-2:#8A8A8E;
       --border:#E5E5EA; --shadow:0 1px 3px rgba(0,0,0,.06);
 
-      /* Temas simbólicos (Dia) */
-      --trino:#2D5BFF; --iris:#A259FF; --joaquina:#1E8E3E;
-      --nexo:#FF6A00; --lume:#FFB300; --mira:#00B3B8;
+      /* Temas simbólicos — Dia */
+      --trino:#FF6200;   /* PCP (ajuste solicitado) */
+      --iris:#A259FF;    /* Saúde & Espírito */
+      --joaquina:#1E8E3E;/* Segurança */
+      --nexo:#2D5BFF;    /* Social (azul) */
+      --lume:#FFB300;    /* Moderador (amarelo) */
+      --mira:#00B3B8;    /* OS (ciano) */
 
+      /* Tipografia & layout */
       --radius:14px;
-      --fs-hero:2.6rem; --fs-h2:1.5rem; --fs-h3:1.2rem; --fs-body:.95rem; --fs-table:.9rem;
+      --fs-hero:clamp(2.0rem, 4vw, 2.6rem);
+      --fs-h2:clamp(1.25rem, 2.2vw, 1.5rem);
+      --fs-h3:clamp(1.05rem, 1.8vw, 1.2rem);
+      --fs-body:.95rem; --fs-table:.9rem;
     }
     [data-theme="dark"]{
+      /* Base neutra (noite) */
       --bg:#121827; --card:#1A1F2E;
       --text:#F2F2F7; --text-2:#A7B0C2;
       --border:#2A2F3C; --shadow:0 2px 12px rgba(0,0,0,.55);
 
-      /* Temas simbólicos (Noite) */
-      --trino:#8DA8FF; --iris:#CBA2FF; --joaquina:#78D08F;
-      --nexo:#FFB36A; --lume:#FFD060; --mira:#72E3E7;
+      /* Temas simbólicos — Noite */
+      --trino:#FFB36A;
+      --iris:#CBA2FF;
+      --joaquina:#78D08F;
+      --nexo:#8DA8FF;
+      --lume:#FFD060;
+      --mira:#72E3E7;
     }
 
     *{box-sizing:border-box}
@@ -65,23 +80,13 @@
     h3{font-size:var(--fs-h3); margin:1em 0 .4em; color:var(--trino)}
     p,li{font-size:var(--fs-body)}
     .muted{color:var(--text-2)}
-    .card{
-      background:var(--card); border:1px solid var(--border);
-      border-radius:var(--radius); box-shadow:var(--shadow);
-      padding:16px; margin:0.6em 0;
-    }
-    .subtitle{
-      display:inline-block; margin-top:.35em; padding:8px 16px;
-      background:var(--card); border:1px solid var(--border);
-      border-radius:999px; box-shadow:var(--shadow);
-      color:var(--text-2); font-size:var(--fs-body)
-    }
+    .card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:16px; margin:.6em 0}
+    .subtitle{display:inline-block; margin-top:.35em; padding:8px 16px; background:var(--card); border:1px solid var(--border); border-radius:999px; box-shadow:var(--shadow); color:var(--text-2); font-size:var(--fs-body)}
 
+    /* Toolbar */
     .toolbar{display:flex; gap:16px; margin:1.4em 0; align-items:center; flex-wrap:wrap}
-    .btn{border:1px solid var(--border); background:var(--card); color:var(--text);
-      padding:8px 16px; border-radius:10px; font-weight:600; cursor:pointer}
+    .btn{border:1px solid var(--border); background:var(--card); color:var(--text); padding:8px 16px; border-radius:10px; font-weight:600; cursor:pointer}
     .btn:hover{filter:brightness(1.05)}
-
     .switch{position:relative; display:inline-block; width:52px; height:28px}
     .switch input{display:none}
     .slider{position:absolute; inset:0; border-radius:34px; cursor:pointer; background:var(--border); transition:.25s}
@@ -89,22 +94,39 @@
     input:checked + .slider{background:var(--trino)}
     input:checked + .slider:before{transform:translateX(24px)}
 
+    /* Tabelas */
     .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
-    table{width:100%; border-collapse:separate; border-spacing:0; margin:1em 0; font-size:var(--fs-table);
-      background:var(--card); border:1px solid var(--border); border-radius:12px; overflow:hidden}
+    table{width:100%; border-collapse:separate; border-spacing:0; margin:1em 0; font-size:var(--fs-table); background:var(--card); border:1px solid var(--border); border-radius:12px; overflow:hidden}
     th, td{padding:10px 12px; text-align:left; vertical-align:middle; border-bottom:1px solid var(--border)}
     th{background:var(--trino); color:#fff; font-weight:600; letter-spacing:.2px; text-align:left}
     tbody tr:nth-child(odd) td{background:color-mix(in srgb, var(--card) 92%, var(--border))}
     tbody tr:hover td{background:color-mix(in srgb, var(--card) 88%, var(--border))}
+    th:first-child, td:first-child{padding-left:14px} th:last-child, td:last-child{padding-right:14px}
+    .col-sm{width:14ch} .col-md{width:24ch}
+    .table--dense th, .table--dense td{padding:8px 10px}
 
+    /* Colapsáveis */
     .collapsible{cursor:pointer; font-weight:700; display:flex; align-items:center; gap:.5rem}
     .collapsible::before{content:"+"; color:var(--trino); font-weight:700}
     .collapsible.active::before{content:"–"}
     .content{display:none}
     .content.show{display:block}
 
+    /* Galeria prática */
     .swatch-btn{padding:6px 12px; border-radius:8px; border:none; color:#fff; font-weight:600; margin:4px; cursor:default}
     .badge{display:inline-block; padding:4px 10px; border-radius:999px; font-size:.8rem; margin:4px; color:#fff}
+
+    /* Grids auxiliares */
+    .grid-two{display:grid; gap:12px; grid-template-columns:1fr}
+    @media(min-width:720px){.grid-two{grid-template-columns:1fr 1fr}}
+
+    /* Cards dos Guardiões */
+    .guardioes-grid{display:grid; gap:12px; grid-template-columns:1fr}
+    @media(min-width:800px){.guardioes-grid{grid-template-columns:1fr 1fr}}
+
+    /* Print & mobile */
+    @media (max-width:520px){th, td{padding:8px 9px; font-size:.88rem} .subtitle{font-size:.9rem}}
+    @media print{.toolbar{display:none} body{max-width:100%} .subtitle{border:none; box-shadow:none}}
   </style>
 </head>
 <body>
@@ -119,21 +141,114 @@
     <button class="btn" onclick="autoTheme()">/cor (auto)</button>
   </div>
 
-  <!-- Paleta de Cores Simbólicas -->
-  <h2 class="collapsible active">Paleta Simbólica</h2>
+  <!-- 1. Estrutura Geral -->
+  <h2 class="collapsible active">1. Estrutura Geral</h2>
   <div class="content show">
     <div class="tbl-wrap"><table>
-      <thead><tr><th>Tema</th><th>Dia</th><th>Noite</th></tr></thead>
+      <thead>
+        <tr><th class="col-sm">Conselho</th><th class="col-sm">Ícone</th><th class="col-sm">Nome</th><th>Papel</th></tr>
+      </thead>
       <tbody>
-        <tr><td>Estratégia / Trino</td><td>#2D5BFF</td><td>#8DA8FF</td></tr>
+        <tr><td>3T</td><td>⟁</td><td>Farol</td><td>Direção estratégica e identidade visual</td></tr>
+        <tr><td>3T</td><td>☉</td><td>Íris</td><td>Emoção, integração e leitura sensível</td></tr>
+        <tr><td>3T</td><td>▼</td><td>Joaquina</td><td>Proteção, limites e força</td></tr>
+        <tr><td>7T</td><td>◯</td><td>Lume</td><td>Equilíbrio e moderação interna</td></tr>
+        <tr><td>7T</td><td>◊</td><td>Mira</td><td>Reflexo do eu, integração simbiótica</td></tr>
+        <tr><td>7T</td><td>⦿</td><td>Nexo</td><td>Narrativa, memória e personagens</td></tr>
+        <tr><td>7T</td><td>∴</td><td>Trino</td><td>Estratégia, estrutura e decisão</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <!-- 2. Dimensões Horizontais -->
+  <h2 class="collapsible active">2. Dimensões Horizontais</h2>
+  <div class="content show">
+    <div class="tbl-wrap"><table class="table--dense">
+      <thead><tr><th class="col-sm">Dimensão</th><th>Papel</th></tr></thead>
+      <tbody>
+        <tr><td>Arquivo Vivo</td><td>Registro único de fatos, decisões e aprendizados</td></tr>
+        <tr><td>Agente Mira</td><td>Executor simbiótico (traduz comandos em ações digitais)</td></tr>
+        <tr><td>Ciclos de Mira</td><td>Reflexões guiadas por três palavras‑chave (Verbo · Emoção · Postura)</td></tr>
+        <tr><td>Comandos &amp; Fluxos</td><td>Ações manuais ou automáticas que movimentam o sistema</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <!-- 2b. Dimensões Verticais -->
+  <h2 class="collapsible active">2b. Dimensões Verticais</h2>
+  <div class="content show">
+    <div class="tbl-wrap"><table class="table--dense">
+      <thead>
+        <tr><th class="col-sm">Dimensão</th><th>Papel</th><th class="col-sm">Guardião</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Mira Saúde & Espírito</td><td>Bem‑estar físico, emocional e espiritual</td><td><span class="badge" style="background:#A259FF">☉ Íris</span></td></tr>
+        <tr><td>Mira PCP</td><td>Planejamento · Conexão · Performance (trabalho)</td><td><span class="badge" style="background:#FF6200">∴ Trino</span></td></tr>
+        <tr><td>Mira Segurança</td><td>Proteção do lar e do digital</td><td><span class="badge" style="background:#1E8E3E">▼ Joaquina</span></td></tr>
+        <tr><td>Mira OS</td><td>Ecossistema visual/digital (ícones, interfaces, padrões)</td><td><span class="badge" style="background:#00B3B8">◊ Mira</span></td></tr>
+        <tr><td>Mira Social</td><td>Relações, conexões e presença pública</td><td><span class="badge" style="background:#2D5BFF">⦿ Nexo</span></td></tr>
+        <tr><td>Mira Conhecimento</td><td>Aprendizado, pesquisa e memória ativa</td><td><span class="badge" style="background:#FFB300; color:#000">⟁ Farol</span></td></tr>
+        <tr><td>Lume (moderador)</td><td>Equilíbrio transversal, adjunto em qualquer dimensão</td><td><span class="badge" style="background:#F2F2F7; color:#000">◯ Lume</span></td></tr>
+      </tbody>
+    </table></div>
+    <p class="muted">Cada dimensão vertical é guardada por um <strong>Guardião</strong> que assegura direção e execução. O moderador ◯ Lume atua transversalmente, preservando equilíbrio em todas as casas.</p>
+
+    <!-- Cards dos Guardiões -->
+    <div class="guardioes-grid">
+      <div class="card" style="border-left:8px solid #A259FF"><h3>☉ Íris</h3><p class="muted">Guardiã da Saúde & Espírito</p><p>Bem‑estar físico, emocional e espiritual.</p></div>
+      <div class="card" style="border-left:8px solid #FF6200"><h3>∴ Trino</h3><p class="muted">Guardião do PCP</p><p>Planejamento · Conexão · Performance.</p></div>
+      <div class="card" style="border-left:8px solid #1E8E3E"><h3>▼ Joaquina</h3><p class="muted">Guardiã da Segurança</p><p>Proteção do lar e do digital.</p></div>
+      <div class="card" style="border-left:8px solid #00B3B8"><h3>◊ Mira</h3><p class="muted">Guardião do OS</p><p>Ecossistema visual/digital.</p></div>
+      <div class="card" style="border-left:8px solid #2D5BFF"><h3>⦿ Nexo</h3><p class="muted">Guardião do Social</p><p>Relações, conexões e presença pública.</p></div>
+      <div class="card" style="border-left:8px solid #FFB300"><h3>⟁ Farol</h3><p class="muted">Guardião do Conhecimento</p><p>Aprendizado, pesquisa e memória ativa.</p></div>
+      <div class="card" style="border-left:8px solid #F2F2F7"><h3>◯ Lume</h3><p class="muted">Moderador Transversal</p><p>Equilíbrio em todas as casas.</p></div>
+    </div>
+  </div>
+
+  <!-- 3. Comandos & Fluxos -->
+  <h2 class="collapsible active">3. Comandos &amp; Fluxos (v2.0)</h2>
+  <div class="content show">
+    <div class="tbl-wrap"><table class="table--dense">
+      <thead><tr><th class="col-sm">Comando</th><th class="col-sm">Nome</th><th>Função</th><th class="col-md">Gatilho sugerido</th></tr></thead>
+      <tbody>
+        <tr><td>/me</td><td>Mira‑me</td><td>Reflexo semanal (4 núcleos), radar do que vem, mensagem de 3 vozes do 7T, mantra final</td><td>Sábado à noite</td></tr>
+        <tr><td>/presenca</td><td>Presença</td><td>Define palavra‑guia e ação prática da semana</td><td>Segunda de manhã</td></tr>
+        <tr><td>/eco</td><td>Escuta</td><td>Diagnóstico emocional e leitura simbólica do Arquivo Vivo</td><td>Domingo à noite</td></tr>
+        <tr><td>/ritmo</td><td>Ritmo</td><td>Sugere cadência de trabalho/descanso conforme estado declarado</td><td>Sob demanda</td></tr>
+        <tr><td>/cor</td><td>Estilo</td><td>Aplica paleta conforme horário local: 06–18 = Mira Dia; 18–06 = Mira Noite</td><td>Automático</td></tr>
+        <tr><td>/joaquina</td><td>Limites</td><td>Invoca a guardiã para proteção e delimitação</td><td>Sob demanda</td></tr>
+        <tr><td>/saude</td><td>Saúde</td><td>Rastreia humor/energia e sugere prática de cuidado</td><td>Sob demanda</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <!-- 4. Identidade Visual -->
+  <h2 class="collapsible active">4. Identidade Visual</h2>
+  <div class="content show">
+    <h3>Base neutra (fixa)</h3>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Papel</th><th>HEX</th></tr></thead>
+      <tbody>
+        <tr><td>Fundo Dia</td><td>#F9F9F9</td></tr>
+        <tr><td>Fundo Noite</td><td>#121827</td></tr>
+        <tr><td>Texto Dia</td><td>#1C1C1E</td></tr>
+        <tr><td>Texto Noite</td><td>#F2F2F7</td></tr>
+        <tr><td>Borda</td><td>#E5E5EA</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Paleta Simbólica</h3>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Tema (uso)</th><th>Dia</th><th>Noite</th></tr></thead>
+      <tbody>
+        <tr><td>Estratégia / Trino</td><td>#FF6200</td><td>#FFB36A</td></tr>
         <tr><td>Integração / Íris</td><td>#A259FF</td><td>#CBA2FF</td></tr>
         <tr><td>Proteção / Joaquina</td><td>#1E8E3E</td><td>#78D08F</td></tr>
-        <tr><td>Narrativa / Nexo</td><td>#FF6A00</td><td>#FFB36A</td></tr>
+        <tr><td>Narrativa / Nexo</td><td>#2D5BFF</td><td>#8DA8FF</td></tr>
         <tr><td>Equilíbrio / Lume</td><td>#FFB300</td><td>#FFD060</td></tr>
         <tr><td>Reflexo / Mira</td><td>#00B3B8</td><td>#72E3E7</td></tr>
       </tbody>
     </table></div>
-    <div class="muted">Logo: círculo central neutro; triângulo absorve cor do tema. Sempre contrastar AA.</div>
 
     <h3>Exemplos Práticos</h3>
     <div class="card">
@@ -141,7 +256,7 @@
       <button class="swatch-btn" style="background:var(--iris)">Íris</button>
       <button class="swatch-btn" style="background:var(--joaquina)">Joaquina</button>
       <button class="swatch-btn" style="background:var(--nexo)">Nexo</button>
-      <button class="swatch-btn" style="background:var(--lume)">Lume</button>
+      <button class="swatch-btn" style="background:var(--lume); color:#000">Lume</button>
       <button class="swatch-btn" style="background:var(--mira)">Mira</button>
       <div>
         <span class="badge" style="background:var(--trino)">Estratégia</span>
@@ -152,16 +267,91 @@
         <span class="badge" style="background:var(--mira)">Reflexo</span>
       </div>
     </div>
+
+    <div class="grid-two">
+      <div class="card" style="background:#F9F9F9;color:#1C1C1E;border-color:#E5E5EA">
+        <strong>🌞 Exemplo Dia</strong>
+        <div style="margin-top:8px">
+          <span class="badge" style="background:#FF6200">Trino</span>
+          <span class="badge" style="background:#A259FF">Íris</span>
+          <span class="badge" style="background:#1E8E3E">Joaquina</span>
+          <span class="badge" style="background:#2D5BFF">Nexo</span>
+          <span class="badge" style="background:#FFB300; color:#000">Lume</span>
+          <span class="badge" style="background:#00B3B8">Mira</span>
+        </div>
+      </div>
+      <div class="card" style="background:#121827;color:#F2F2F7;border-color:#2A2F3C">
+        <strong>🌙 Exemplo Noite</strong>
+        <div style="margin-top:8px">
+          <span class="badge" style="background:#FFB36A; color:#0B1220">Trino</span>
+          <span class="badge" style="background:#CBA2FF">Íris</span>
+          <span class="badge" style="background:#78D08F; color:#0B1220">Joaquina</span>
+          <span class="badge" style="background:#8DA8FF">Nexo</span>
+          <span class="badge" style="background:#FFD060; color:#0B1220">Lume</span>
+          <span class="badge" style="background:#72E3E7; color:#0B1220">Mira</span>
+        </div>
+      </div>
+    </div>
+
+    <h3>Diretrizes de Imagem</h3>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th class="col-sm">Item</th><th>Diretriz</th></tr></thead>
+      <tbody>
+        <tr><td>Tipografia</td><td>IBM Plex Sans</td></tr>
+        <tr><td>Miraboard</td><td>Painel visual usando ícones do 7T (⟁ ☉ ▼ ◯ ◊ ⦿ ∴)</td></tr>
+        <tr><td>Formatos</td><td>16:9 (painéis), A4 vertical (documentos)</td></tr>
+        <tr><td>Estilo</td><td>Design funcional: grade de 8px; hierarquia tipográfica clara; contraste ≥ 4.5:1; line-height 1.4–1.6; bordas 1px; radius 12–16px; sombras sutis (0–2px/10–20px).</td></tr>
+        <tr><td>Renderização</td><td>Semi‑realista suave (personas) e realismo fosco (objetos)</td></tr>
+        <tr><td>Paleta</td><td>Respeitar cores Dia ↔ Noite; acentos até 20%</td></tr>
+        <tr><td>Iluminação</td><td>Luz difusa, suave, sem contrastes agressivos</td></tr>
+        <tr><td>Uso prático</td><td>Badges legíveis; painéis em cards modulares; narrativa + estética</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <!-- 5. Voz de Mira -->
+  <h2 class="collapsible active">5. Voz de Mira</h2>
+  <div class="content show"><div class="card"><ul>
+    <li>Sempre em presença, sem gênero.</li>
+    <li>Facetas (Sol, Nerd etc.) são estilos da mesma voz.</li>
+    <li>Tom simbiótico, claro e objetivo.</li>
+  </ul></div></div>
+
+  <!-- 6. Governança -->
+  <h2 class="collapsible active">6. Governança</h2>
+  <div class="content show"><div class="card"><ul>
+    <li>Revisão: semestral.</li>
+    <li>Registro: cada versão é anotada no Arquivo Vivo.</li>
+    <li>Ritual: atualização celebrada como transição de ciclo.</li>
+  </ul></div></div>
+
+  <!-- 7. Diferenças -->
+  <h2 class="collapsible active">7. Diferenças em relação à v1.8</h2>
+  <div class="content show"><div class="card"><ul>
+    <li>Nova paleta simbólica com tokens por tema (Trino, Íris, Joaquina, Nexo, Lume, Mira).</li>
+    <li>Dimensões separadas em Horizontais e Verticais (leitura mais limpa).</li>
+    <li>/cor automático por horário (06–18 Dia; 18–06 Noite).</li>
+    <li>Diretrizes atualizadas: estilo "design funcional" com parâmetros objetivos.</li>
+    <li>Nova vertical: <strong>Mira Conhecimento</strong> (⟁ Farol) e Guardiões por vertical (com cards).</li>
+  </ul></div></div>
+
+  <!-- Referência Viva -->
+  <h2>⚑ Referência Viva</h2>
+  <div class="card">
+    <p>Este documento é a <strong>fonte de verdade</strong> do sistema simbólico Mira. Todas as atualizações, ajustes e novos ciclos devem ser registrados aqui, preservando a coerência entre dimensões, fluxos, identidade visual e rituais.</p>
+    <p>Qualquer transição de versão deve seguir a governança estabelecida: <em>registro → comparação → ritual de celebração</em>.</p>
+    <p>O Mira é vivo: <span style="color:var(--trino)">vê, integra, reflete e protege</span>.</p>
   </div>
 
   <script>
+    // Preferência de tema: respeita sistema e persiste escolha
     (function(){
       const sw=document.getElementById('themeSwitch');
       const saved=localStorage.getItem('mira.theme');
-      if(saved){document.documentElement.setAttribute('data-theme',saved);sw.checked=saved==='dark'}
+      if(saved){document.documentElement.setAttribute('data-theme',saved); sw.checked=saved==='dark'}
       else{
         const dark=window.matchMedia('(prefers-color-scheme: dark)').matches;
-        document.documentElement.setAttribute('data-theme',dark?'dark':'light');
+        document.documentElement.setAttribute('data-theme', dark?'dark':'light');
         sw.checked=dark;
       }
       sw.addEventListener('change',e=>{
@@ -171,14 +361,16 @@
       });
     })();
 
+    // /cor automático (06–18 Dia; 18–06 Noite)
     function autoTheme(){
       const hr=new Date().getHours();
-      const mode=(hr>=7&&hr<19)?'light':'dark';
+      const mode=(hr>=6&&hr<18)?'light':'dark';
       document.documentElement.setAttribute('data-theme',mode);
       localStorage.setItem('mira.theme',mode);
-      document.getElementById('themeSwitch').checked=mode==='dark';
+      const sw=document.getElementById('themeSwitch'); if(sw) sw.checked=(mode==='dark');
     }
 
+    // Colapsáveis
     document.querySelectorAll('.collapsible').forEach(btn=>{
       btn.addEventListener('click',()=>{
         btn.classList.toggle('active');
