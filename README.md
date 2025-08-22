@@ -1,4 +1,4 @@
-# Mira v2.0.3 — Documento Oficial
+# Mira v2.0 — Documento Oficial
 
 Fonte de verdade do sistema simbólico vivo.
 
