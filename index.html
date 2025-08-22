@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mira v2.0.6 • Documento Oficial</title>
+  <title>Mira v2.0.7 • Documento Oficial</title>
 
   <!-- Performance -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +16,7 @@
   <link rel="apple-touch-icon" href="favicon-64.png">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Mira v2.0.6 • Documento Oficial">
+  <meta property="og:title" content="Mira v2.0.7 • Documento Oficial">
   <meta property="og:description" content="Fonte de verdade do sistema simbólico vivo.">
   <meta property="og:image" content="og-image.png">
   <meta property="og:type" content="website">
@@ -25,23 +25,30 @@
 
   <!-- Theme colors -->
   <meta name="theme-color" content="#F9F9F9" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#121827" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#0C0C0C" media="(prefers-color-scheme: dark)">
 
   <!-- Fonte -->
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
+      /* Base clara */
       --bg:#F9F9F9; --card:#FFFFFF; --text:#1C1C1E; --text-2:#8A8A8E; --border:#E5E5EA;
-      --shadow:0 1px 3px rgba(0,0,0,.06); --radius:14px;
-      --th:#D1D1D6; 
+      --shadow:0 1px 3px rgba(0,0,0,.06); --radius:14px; --th:#D1D1D6; 
       --fs-hero:2.6rem; --fs-h2:1.5rem; --fs-h3:1.1rem; --fs-body:.96rem; --fs-table:.92rem;
+      /* Nav (claro) */
+      --nav-bg:#f0f0f0; --nav-item:#1C1C1E; --nav-item-hover:rgba(0,0,0,.06);
+      /* Paleta temática */
       --topic-trino:#2D5BFF; --topic-iris:#A259FF; --topic-joaquina:#1E8E3E; --topic-nexo:#FF6A00;
       --topic-lume:#FFB300; --topic-mira:#00B3B8;
     }
     [data-theme="dark"]{
-      --bg:#121827; --card:#0F172A; --text:#F2F2F7; --text-2:#8D8D93; --border:#38383A;
-      --shadow:0 12px 28px rgba(0,0,0,.55); --th:#2E3340;
+      /* Base escura quase preta */
+      --bg:#0C0C0C; --card:#1A1A1A; --text:#F2F2F7; --text-2:#A0A0A0; --border:#2A2A2A;
+      --shadow:0 12px 28px rgba(0,0,0,.5); --th:#222;
+      /* Nav (escuro) */
+      --nav-bg:rgba(0,0,0,.85); --nav-item:#F2F2F7; --nav-item-hover:rgba(255,255,255,.06);
+      /* Paleta noturna */
       --topic-trino:#8DA8FF; --topic-iris:#CBA2FF; --topic-joaquina:#78D08F; --topic-nexo:#FFB36A;
       --topic-lume:#FFD060; --topic-mira:#72E3E7;
     }
@@ -51,23 +58,22 @@
     body{
       margin:0; padding:24px; max-width:1060px; margin-inline:auto;
       font-family:"IBM Plex Sans",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
-      background:var(--bg); color:var(--text); line-height:1.6;
-      padding-top:84px;
+      background:var(--bg); color:var(--text); line-height:1.6; padding-top:84px;
     }
 
     h1{font-size:var(--fs-hero); margin:.15em 0 .1em; font-weight:700; letter-spacing:.2px}
     h2{font-size:var(--fs-h2); margin:1.1em 0 .55em}
     h3{font-size:var(--fs-h3); margin:.9em 0 .35em; color:var(--text)}
-    p,li{font-size:var(--fs-body)}
-    .muted{color:var(--text-2)}
+    p,li{font-size:var(--fs-body)} .muted{color:var(--text-2)}
     .subtitle{display:inline-block; margin-top:.35em; padding:8px 16px; background:var(--card); border:1px solid var(--border); border-radius:999px; box-shadow:var(--shadow); color:var(--text-2)}
     .card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:16px}
 
-    .header{position:fixed; top:0; left:0; right:0; z-index:999; display:flex; align-items:center; gap:18px; justify-content:space-between; padding:10px 24px; backdrop-filter:blur(10px); background:color-mix(in srgb, var(--bg) 82%, transparent); border-bottom:1px solid var(--border)}
+    /* Header + Navegação */
+    .header{position:fixed; top:0; left:0; right:0; z-index:999; display:flex; align-items:center; gap:18px; justify-content:space-between; padding:10px 24px; backdrop-filter:blur(10px); background:color-mix(in srgb, var(--bg) 86%, transparent); border-bottom:1px solid var(--border)}
     .logo{font-weight:700; font-size:1.2rem}
-    nav{display:flex; gap:18px; align-items:center}
-    nav a{text-decoration:none; color:var(--text); font-weight:600; font-size:.98rem}
-    nav a:hover{opacity:.85}
+    nav.desktop{display:flex; gap:18px; align-items:center}
+    nav.desktop a{text-decoration:none; color:var(--text); font-weight:600; font-size:.98rem}
+    nav.desktop a:hover{opacity:.85}
 
     .switch{position:relative; display:inline-block; width:54px; height:30px}
     .switch input{display:none}
@@ -75,6 +81,12 @@
     .slider:before{content:""; position:absolute; width:24px; height:24px; left:3px; bottom:3px; border-radius:50%; background:var(--card); transition:.25s; box-shadow:0 1px 2px rgba(0,0,0,.12)}
     input:checked + .slider{background:var(--text-2)}
     input:checked + .slider:before{transform:translateX(24px)}
+
+    /* Menu mobile */
+    .nav-toggle{display:none; border:1px solid var(--border); background:var(--card); color:var(--text); padding:8px 12px; border-radius:10px; font-weight:600}
+    .mobile-menu{position:fixed; top:64px; right:16px; width:min(92vw, 340px); background:var(--nav-bg); color:var(--nav-item); border:1px solid var(--border); border-radius:14px; box-shadow:0 16px 40px rgba(0,0,0,.35); display:none}
+    .mobile-menu a{display:block; padding:12px 16px; color:var(--nav-item); text-decoration:none; font-weight:600}
+    .mobile-menu a:hover{background:var(--nav-item-hover)}
 
     .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
     table{width:100%; border-collapse:separate; border-spacing:0; margin:1em 0; font-size:var(--fs-table); background:var(--card); border:1px solid var(--border); border-radius:12px; overflow:hidden}
@@ -91,12 +103,17 @@
     @keyframes reveal{from{opacity:0; transform:translateY(-4px)} to{opacity:1; transform:translateY(0)}}
 
     .dot{display:inline-block; width:.8em; height:.8em; border-radius:50%}
+
+    @media (max-width:960px){
+      nav.desktop{display:none}
+      .nav-toggle{display:inline-block}
+    }
   </style>
 </head>
 <body>
   <header class="header">
     <div class="logo">Mira</div>
-    <nav aria-label="Seções do documento">
+    <nav class="desktop" aria-label="Seções do documento">
       <a href="#estrutura">Estrutura</a>
       <a href="#horizontais">Horizontais</a>
       <a href="#verticais">Verticais</a>
@@ -106,13 +123,24 @@
       <a href="#governanca">Governança</a>
       <a href="#diferencas">Diferenças</a>
     </nav>
+    <button class="nav-toggle" id="menuBtn" aria-haspopup="true" aria-controls="mobileMenu" aria-expanded="false">Menu</button>
     <label class="switch" title="Alternar tema (Claro/Escuro)">
       <input type="checkbox" id="themeSwitch" aria-label="Alternar modo Claro/Escuro"><span class="slider"></span>
     </label>
+    <div class="mobile-menu" id="mobileMenu" role="menu" aria-label="Navegação rápida">
+      <a href="#estrutura" role="menuitem">Estrutura</a>
+      <a href="#horizontais" role="menuitem">Horizontais</a>
+      <a href="#verticais" role="menuitem">Verticais</a>
+      <a href="#comandos" role="menuitem">Comandos</a>
+      <a href="#identidade" role="menuitem">Identidade</a>
+      <a href="#voz" role="menuitem">Voz</a>
+      <a href="#governanca" role="menuitem">Governança</a>
+      <a href="#diferencas" role="menuitem">Diferenças</a>
+    </div>
   </header>
 
   <h1 class="anchor">Mira</h1>
-  <div class="subtitle">Documento oficial do sistema vivo • v2.0.6 — 22/08/2025</div>
+  <div class="subtitle">Documento oficial do sistema vivo • v2.0.7 — 22/08/2025</div>
 
   <h2 id="estrutura" class="collapsible"><span class="marker">–</span> Estrutura Geral</h2>
   <div class="content show">
@@ -196,4 +224,106 @@
     </table></div>
 
     <h3>Diretrizes de Imagem</h3>
-    <div class="tbl
+    <div class="tbl-wrap"><table><thead><tr><th>Item</th><th>Diretriz</th></tr></thead>
+      <tbody>
+        <tr><td>Tipografia</td><td>IBM Plex Sans</td></tr>
+        <tr><td>Miraboard</td><td>Painel visual usando ícones do 7T (⟁ ☉ ▼ ◯ ◊ ⦿ ∴)</td></tr>
+        <tr><td>Formatos</td><td>16:9 (painéis), A4 vertical (documentos)</td></tr>
+        <tr><td>Estilo</td><td>Design funcional, geometria centralizada, fundo limpo</td></tr>
+        <tr><td>Renderização</td><td>Semi-realista suave (personas) e realismo fosco (objetos)</td></tr>
+        <tr><td>Paleta</td><td>Respeitar cores Dia ↔ Noite; acentos até 20%</td></tr>
+        <tr><td>Iluminação</td><td>Luz difusa, suave, sem contrastes agressivos</td></tr>
+        <tr><td>Uso prático</td><td>Badges legíveis; painéis em cards modulares; narrativa + estética</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <h2 id="voz" class="collapsible"><span class="marker">–</span> Voz de Mira</h2>
+  <div class="content show">
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Aspecto</th><th>Definição</th></tr></thead>
+      <tbody>
+        <tr><td>Presença</td><td>Sempre presente, sem gênero</td></tr>
+        <tr><td>Facetas</td><td>Estilos (Sol, Nerd etc.) da mesma voz</td></tr>
+        <tr><td>Tom</td><td>Simbiótico, claro e objetivo</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <h2 id="governanca" class="collapsible"><span class="marker">–</span> Governança</h2>
+  <div class="content show">
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Item</th><th>Política</th></tr></thead>
+      <tbody>
+        <tr><td>Revisão</td><td>Semestral</td></tr>
+        <tr><td>Registro</td><td>Cada versão é anotada no Arquivo Vivo</td></tr>
+        <tr><td>Ritual</td><td>Atualização celebrada como transição de ciclo</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <h2 id="diferencas" class="collapsible"><span class="marker">–</span> Diferenças v2.0</h2>
+  <div class="content show">
+    <ul>
+      <li>Diretrizes de Imagem integradas à Identidade</li>
+      <li>Checklist simbólico consolidado para consistência visual</li>
+      <li>Paleta temática (Dia/Noite) revisada</li>
+      <li>Header fixo com navegação + modo Claro/Escuro acessível</li>
+      <li>Menu mobile com cor própria e scroll suave</li>
+    </ul>
+  </div>
+
+  <script>
+    // Tema persistente
+    (function(){
+      const sw=document.getElementById('themeSwitch');
+      const saved=localStorage.getItem('mira.theme');
+      if(saved){document.documentElement.setAttribute('data-theme',saved);sw.checked=saved==='dark'}
+      else{
+        const dark=window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute('data-theme',dark?'dark':'light');
+        sw.checked=dark;
+      }
+      sw.addEventListener('change',e=>{
+        const mode=e.target.checked?'dark':'light';
+        document.documentElement.setAttribute('data-theme',mode);
+        localStorage.setItem('mira.theme',mode);
+      });
+    })();
+
+    // Colapsáveis
+    document.querySelectorAll('.collapsible').forEach(btn=>{
+      const marker=btn.querySelector('.marker');
+      const next=btn.nextElementSibling;
+      // inicia abertos
+      next.classList.add('show');
+      marker.textContent='–';
+      btn.addEventListener('click',()=>{
+        next.classList.toggle('show');
+        marker.textContent = next.classList.contains('show') ? '–' : '+';
+      });
+    });
+
+    // Menu mobile
+    const menuBtn=document.getElementById('menuBtn');
+    const mobileMenu=document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click',()=>{
+      const open=mobileMenu.style.display==='block';
+      mobileMenu.style.display=open?'none':'block';
+      menuBtn.setAttribute('aria-expanded', String(!open));
+    });
+    mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+      mobileMenu.style.display='none';
+      menuBtn.setAttribute('aria-expanded','false');
+    }));
+
+    // Fecha ao clicar fora
+    document.addEventListener('click',e=>{
+      if(!mobileMenu.contains(e.target) && e.target!==menuBtn){
+        mobileMenu.style.display='none';
+        menuBtn.setAttribute('aria-expanded','false');
+      }
+    });
+  </script>
+</body>
+</html>
