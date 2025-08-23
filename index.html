@@ -3,155 +3,145 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mira v2.2 • Documento Oficial</title>
+  <title>Mira v2.3 • Documento Oficial</title>
 
-  <!-- Performance -->
+  <!-- Tipografia -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-
-  <!-- Favicons (placeholders) -->
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="apple-touch-icon" href="favicon-64.png">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Mira v2.2 • Documento Oficial">
-  <meta property="og:description" content="Fonte de verdade do sistema simbólico vivo.">
-  <meta property="og:image" content="og-image.png">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://fer-lucas.github.io/mira/">
-  <link rel="canonical" href="https://fer-lucas.github.io/mira/" />
-
-  <!-- Theme colors -->
-  <meta name="theme-color" content="#007AFF" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0C0C0C" media="(prefers-color-scheme: dark)">
-
-  <!-- Fonte -->
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
+    /* ------------------------------
+       TOKENS DE COR (OKLCH + fallback)
+       ------------------------------ */
     :root{
-      /* Neutros */
-      --bg:#F9F9F9; --card:#FFFFFF; --text:#1C1C1E; --text-2:#8A8A8E; --border:#E5E5EA;
-      --primary:#007AFF; --secondary:#AECBFA;
-      --shadow:0 1px 3px rgba(0,0,0,.06); --radius:14px;
-      --fs-hero:2.6rem; --fs-h2:1.5rem; --fs-h3:1.2rem; --fs-body:.95rem; --fs-table:.92rem;
+      /* Fallback HSL */
+      --farol-dia:hsl(60 90% 70%);    --farol-noite:hsl(210 100% 65%);
+      --iris-dia:hsl(20 90% 60%);     --iris-noite:hsl(20 80% 75%);
+      --joaquina-dia:hsl(350 70% 30%);--joaquina-noite:hsl(140 45% 60%);
+      --lume-dia:hsl(180 30% 55%);    --lume-noite:hsl(180 35% 70%);
+      --mira-dia:hsl(280 40% 80%);    --mira-noite:hsl(190 60% 70%);
+      --nexo-dia:hsl(120 40% 50%);    --nexo-noite:hsl(220 70% 75%);
+      --trino-dia:hsl(240 55% 40%);   --trino-noite:hsl(240 65% 70%);
 
-      /* Temas (Dia) */
-      --trino:#2D5BFF; --iris:#A259FF; --joaquina:#1E8E3E; --nexo:#2D5BFF; --lume:#FFB300; --mira:#00B3B8; --pcp:#FF6200; --farol:#007AFF;
-      /* Temas (Noite) */
-      --trino-night:#8DA8FF; --iris-night:#CBA2FF; --joaquina-night:#78D08F; --nexo-night:#8DA8FF; --lume-night:#FFD060; --mira-night:#72E3E7; --pcp-night:#FFB36A; --farol-night:#409CFF;
+      /* Base UI (fallback) */
+      --bg:#f6f6f7; --card:#ffffff; --fg:#111; --muted:#d9d9de; --muted-2:#bfc0c4; --border:#e5e5ea;
+      --elev:0 1px 2px rgba(0,0,0,.05);
     }
-    [data-theme="dark"]{
-      --bg:#0C0C0C; --card:#151515; --text:#F2F2F7; --text-2:#A0A0A0; --border:#2A2A2A;
-      --primary:#0A84FF; --secondary:#409CFF; --shadow:0 2px 12px rgba(0,0,0,.55);
+    @supports (color: oklch(50% 0.2 0)){
+      :root{
+        --farol-dia:oklch(82% 0.25 90);   --farol-noite:oklch(70% 0.18 230);
+        --iris-dia:oklch(72% 0.32 28);    --iris-noite:oklch(80% 0.18 28);
+        --joaquina-dia:oklch(38% 0.25 20);--joaquina-noite:oklch(72% 0.12 150);
+        --lume-dia:oklch(62% 0.10 190);   --lume-noite:oklch(76% 0.08 190);
+        --mira-dia:oklch(86% 0.12 270);   --mira-noite:oklch(78% 0.11 210);
+        --nexo-dia:oklch(56% 0.18 140);   --nexo-noite:oklch(80% 0.12 230);
+        --trino-dia:oklch(48% 0.18 250);  --trino-noite:oklch(76% 0.14 250);
+
+        --bg:oklch(98% 0.002 250); --card:oklch(100% 0 0); --fg:oklch(18% 0.02 250);
+        --muted:oklch(90% 0.01 250); --muted-2:oklch(75% 0.02 250); --border:oklch(88% 0.01 250);
+      }
     }
 
+    /* Mapeamento automático Dia/Noite → tokens ativos */
+    :root{ /* light */
+      --farol:var(--farol-dia); --iris:var(--iris-dia); --joaquina:var(--joaquina-dia);
+      --lume:var(--lume-dia); --mira:var(--mira-dia); --nexo:var(--nexo-dia); --trino:var(--trino-dia);
+    }
+    [data-theme="dark"]{ /* dark */
+      --bg:#111214; --card:#16171a; --fg:#f2f2f4; --muted:#2a2b2f; --muted-2:#3a3b3f; --border:#2a2b2f;
+      --farol:var(--farol-noite); --iris:var(--iris-noite); --joaquina:var(--joaquina-noite);
+      --lume:var(--lume-noite); --mira:var(--mira-noite); --nexo:var(--nexo-noite); --trino:var(--trino-noite);
+      --elev:0 8px 24px rgba(0,0,0,.45);
+    }
+
+    /* ------------------------------
+       BASE
+       ------------------------------ */
     *{box-sizing:border-box}
-    html,body{min-height:100%; height:auto; overflow-y:auto; scroll-behavior:smooth}
-    body{
-      margin:0; padding:24px; max-width:1060px; margin-inline:auto;
-      font-family:"IBM Plex Sans",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
-      background:var(--bg); color:var(--text); line-height:1.6;
-      padding-top:72px;
-    }
-    h1{font-size:var(--fs-hero); margin:.2em 0; font-weight:700; letter-spacing:.2px}
-    h2{font-size:var(--fs-h2); margin:1.2em 0 .6em}
-    h3{font-size:var(--fs-h3); margin:1em 0 .4em; color:var(--text)}
-    p,li{font-size:var(--fs-body)}
-    .muted{color:var(--text-2)}
-    .card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:16px}
+    html,body{min-height:100%;height:auto}
+    body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 "IBM Plex Sans", ui-sans-serif, system-ui; padding:24px; max-width:1060px; margin-inline:auto; padding-top:80px}
+    h1{font-size:2.2rem;margin:.2em 0 .4em;font-weight:700}
+    h2{font-size:1.4rem;margin:1.2em 0 .6em;font-weight:600}
+    h3{font-size:1.1rem;margin:1em 0 .4em;font-weight:600;color:var(--fg)}
+    p,li{font-size:0.95rem}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--elev);padding:16px}
+    .muted{color:var(--muted-2)}
 
-    /* Header */
-    .header{position:fixed; top:0; left:0; right:0; z-index:999; backdrop-filter:blur(10px); background:color-mix(in srgb, var(--bg) 82%, transparent); border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; padding:10px 24px}
-    .logo{font-weight:700; font-size:1.2rem; display:flex; align-items:center; gap:.4rem}
-    nav.desktop{display:flex; gap:16px; align-items:center}
-    nav.desktop a{text-decoration:none; color:var(--text); font-weight:600; font-size:.95rem; padding:6px 10px; border-radius:8px}
-    nav.desktop a:hover{opacity:.9}
-    nav.desktop a.active{background:var(--border)}
+    /* Header refinado (sem negrito exagerado) */
+    .header{position:fixed;top:0;left:0;right:0;z-index:20;backdrop-filter:blur(10px);
+      background:color-mix(in oklab, var(--bg), transparent 20%);border-bottom:1px solid var(--border)}
+    .header-inner{max-width:1060px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:10px 24px}
+    .logo{font-weight:700; letter-spacing:.2px}
+    nav.desktop{display:flex;gap:10px;align-items:center}
+    nav.desktop a{all:unset;cursor:pointer;padding:8px 10px;border-radius:10px;font-weight:500;color:var(--fg)}
+    nav.desktop a:hover{background:color-mix(in oklab, var(--card), var(--border) 35%)}
+    nav.desktop a.active{position:relative;background:color-mix(in oklab, var(--card), var(--border) 55%);box-shadow:inset 0 -2px 0 color-mix(in oklab, var(--trino), black 10%)}
 
-    /* Theme switch */
-    .switch{position:relative; display:inline-block; width:52px; height:28px; margin-left:8px}
+    /* Toggle tema */
+    .switch{position:relative;display:inline-block;width:50px;height:26px}
     .switch input{display:none}
-    .slider{position:absolute; inset:0; border-radius:34px; cursor:pointer; background:var(--border); transition:.25s}
-    .slider:before{content:""; position:absolute; width:22px; height:22px; left:3px; bottom:3px; border-radius:50%; background:var(--card); transition:.25s}
-    input:checked + .slider{background:var(--primary)}
+    .slider{position:absolute;inset:0;border-radius:999px;background:var(--border);transition:.25s}
+    .slider:before{content:"";position:absolute;width:20px;height:20px;left:3px;top:3px;border-radius:50%;background:var(--card);transition:.25s;box-shadow:0 1px 2px rgba(0,0,0,.25)}
+    input:checked + .slider{background:var(--nexo)}
     input:checked + .slider:before{transform:translateX(24px)}
 
-    /* Tables */
-    .tbl-wrap{overflow-x:auto; -webkit-overflow-scrolling:touch}
-    table{width:100%; border-collapse:separate; border-spacing:0; margin:1em 0; font-size:var(--fs-table); background:var(--card); border:1px solid var(--border); border-radius:12px; overflow:hidden}
-    th,td{padding:10px 12px; text-align:left; vertical-align:middle; border-bottom:1px solid var(--border)}
-    th{background:var(--border); color:var(--text); font-weight:400; letter-spacing:.2px}
-    tbody tr:nth-child(odd) td{background:color-mix(in srgb, var(--card) 92%, var(--border))}
-    tbody tr:hover td{background:color-mix(in srgb, var(--card) 88%, var(--border))}
+    /* Tabelas */
+    .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    table{width:100%;border-collapse:separate;border-spacing:0;margin:1em 0;font-size:.92rem;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+    th,td{padding:10px 12px;text-align:left;vertical-align:middle;border-bottom:1px solid var(--border)}
+    th{background:var(--border);font-weight:500;color:var(--fg)}
+    tbody tr:nth-child(odd) td{background:color-mix(in oklab, var(--card), var(--border) 14%)}
+    tbody tr:hover td{background:color-mix(in oklab, var(--card), var(--border) 24%)}
 
-    /* Badges & tokens */
-    .badge{display:inline-grid; grid-auto-flow:column; align-items:center; gap:8px; line-height:1; border-radius:999px; padding:8px 12px; font-weight:700; border:1px solid var(--border); background:var(--card); color:var(--text); box-shadow:var(--shadow)}
-    .badge.token{min-height:36px; padding:8px 12px; color:inherit !important; text-shadow:none; border:1px solid color-mix(in srgb, #000 12%, transparent)}
-    [data-theme="dark"] .badge.token{border-color:color-mix(in srgb, #fff 12%, transparent)}
-    .badge .icon{width:18px; height:18px; display:block}
-    .badge .icon *{stroke:currentColor; fill:none; stroke-width:1.8; vector-effect:non-scaling-stroke}
+    /* Badges */
+    .badge{display:inline-grid;grid-auto-flow:column;align-items:center;gap:8px;line-height:1;border:1px solid var(--border);border-radius:999px;padding:8px 12px;font-weight:700}
 
     /* Footer */
-    .footer{margin:32px auto 8px; padding-top:12px; border-top:1px solid var(--border); color:var(--text-2); font-size:.9rem; display:flex; gap:12px; align-items:center; justify-content:space-between}
-    .footer .links a{color:inherit; text-decoration:none; margin-right:12px}
+    .footer{margin:32px auto 8px;padding-top:12px;border-top:1px solid var(--border);color:var(--muted-2);font-size:.9rem;display:flex;gap:12px;align-items:center;justify-content:space-between}
+    .footer .links a{color:inherit;text-decoration:none;margin-right:12px}
     .footer .links a:hover{text-decoration:underline}
-    .footer .right{display:flex; gap:12px; align-items:center}
-    .small-badge{display:inline-flex; align-items:center; gap:6px; border:1px solid var(--border); border-radius:999px; padding:4px 8px; font-weight:600; background:var(--card)}
 
-    /* Mobile menu */
-    .nav-toggle{display:none; border:1px solid var(--border); background:var(--card); color:var(--text); padding:8px 12px; border-radius:10px; font-weight:600}
-    .mobile-menu{position:fixed; top:64px; right:16px; width:min(92vw,340px); background:rgba(0,0,0,.85); color:#F2F2F7; border:1px solid var(--border); border-radius:14px; box-shadow:0 16px 40px rgba(0,0,0,.35); opacity:0; transform:translateY(-6px); pointer-events:none; visibility:hidden; transition:opacity .18s ease, transform .18s ease, visibility .18s}
-    .mobile-menu.open{opacity:1; transform:translateY(0); pointer-events:auto; visibility:visible}
-    [data-theme="light"] .mobile-menu{background:#f0f0f0; color:#1C1C1E}
-    .mobile-menu a{display:block; padding:12px 16px; color:inherit; text-decoration:none; font-weight:700}
-    .mobile-menu a.active{background:color-mix(in srgb, var(--card) 82%, var(--border))}
-    .mobile-close{position:absolute; top:8px; right:10px; background:transparent; border:0; color:currentColor; font-size:1.4rem; line-height:1; cursor:pointer; opacity:.8}
-    .mobile-close:hover{opacity:1}
+    /* Mobile menu mínimo */
+    .nav-toggle{display:none}
+    @media (max-width:560px){
+      .nav-toggle{display:inline-block;border:1px solid var(--border);background:var(--card);color:var(--fg);padding:6px 10px;border-radius:10px;font-weight:600}
+      nav.desktop{display:none}
+    }
   </style>
 </head>
 <body>
-  <header class="header">
-    <div class="logo">Mira</div>
-    <nav class="desktop">
-      <a href="#intro">Introdução</a>
-      <a href="#mapa">Mapa</a>
-      <a href="#horizontais">Horizontais</a>
-      <a href="#comandos">Comandos</a>
-      <a href="#identidade">Identidade</a>
-      <a href="#voz">Voz</a>
-      <a href="#governanca">Governança</a>
-      <a href="#diferencas">Diferenças</a>
-    </nav>
-    <button class="nav-toggle" id="menuBtn" aria-haspopup="true" aria-controls="mobileMenu" aria-expanded="false">Menu</button>
-    <label class="switch" title="Alternar tema (Claro/Escuro)">
-      <input type="checkbox" id="themeSwitch"><span class="slider"></span>
-    </label>
-    <div class="mobile-menu" id="mobileMenu" role="menu" aria-label="Navegação rápida">
-      <button class="mobile-close" aria-label="Fechar menu" title="Fechar">×</button>
-      <a href="#intro" role="menuitem">Introdução</a>
-      <a href="#mapa" role="menuitem">Mapa</a>
-      <a href="#horizontais" role="menuitem">Horizontais</a>
-      <a href="#comandos" role="menuitem">Comandos</a>
-      <a href="#identidade" role="menuitem">Identidade</a>
-      <a href="#voz" role="menuitem">Voz</a>
-      <a href="#governanca" role="menuitem">Governança</a>
-      <a href="#diferencas" role="menuitem">Diferenças</a>
+  <header class="header" id="topo">
+    <div class="header-inner">
+      <div class="logo">Mira</div>
+      <nav class="desktop">
+        <a href="#intro">Introdução</a>
+        <a href="#mapa">Mapa</a>
+        <a href="#horizontais">Horizontais</a>
+        <a href="#comandos">Comandos</a>
+        <a href="#identidade">Identidade</a>
+        <a href="#voz">Voz</a>
+        <a href="#governanca">Governança</a>
+        <a href="#diferencas">Diferenças</a>
+      </nav>
+      <label class="switch" title="Alternar tema (Claro/Escuro)">
+        <input type="checkbox" id="themeSwitch"><span class="slider"></span>
+      </label>
     </div>
   </header>
 
   <h1>Mira</h1>
-  <div class="subtitle" id="sectionIndicator">Documento oficial do sistema vivo • v2.2 — 22/08/2025</div>
+  <div class="subtitle muted" id="sectionIndicator">Documento oficial do sistema vivo • v2.3 — 22/08/2025</div>
 
+  <!-- Introdução -->
   <section id="intro" class="card">
     <h2>Introdução</h2>
     <p><strong>Mira é um sistema simbólico vivo.</strong> Conecta estratégia, cuidado e linguagem num mapa único — para decidir melhor, agir com ritmo e aprender com o próprio rastro.</p>
     <p>O <strong>Conselho</strong> dá intenção (3T e 7T). As <strong>Verticais</strong> tornam intenção em prática (cada uma com um guardião). As <strong>Horizontais</strong> atravessam tudo (arquivo, ciclos, comandos, agente).</p>
-    <p><strong>Nexo</strong> costura narrativas e mantém a memória comum — é o interlocutor de todos.</p>
+    <p><strong>Nexo</strong> costura narrativas e mantém a memória comum — interlocutor de todos.</p>
   </section>
 
+  <!-- Mapa unificado com Guardião como chave e tokens OKLCH -->
   <section id="mapa" class="card">
     <h2>Mapa vivo — Guardiões</h2>
     <div class="tbl-wrap">
@@ -163,24 +153,25 @@
             <th>Ícone</th>
             <th>Perfil</th>
             <th>Vertical</th>
-            <th style="background:#f9f9f9">Token (Dia)</th>
-            <th style="background:#0c0c0c;color:#fff">Token (Noite)</th>
+            <th>Token (Dia)</th>
+            <th>Token (Noite)</th>
             <th>Obs.</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td>Farol</td><td>3T</td><td>△</td><td>Direção estratégica e identidade visual</td><td>Mira OS</td><td style="background:#007AFF;color:#fff">#007AFF</td><td style="background:#409CFF;color:#fff">#409CFF</td><td></td></tr>
-          <tr><td>Íris</td><td>3T</td><td>◎</td><td>Emoção, integração e leitura sensível</td><td>Mira Social</td><td style="background:#A259FF;color:#fff">#A259FF</td><td style="background:#CBA2FF;color:#0c0c0c">#CBA2FF</td><td></td></tr>
-          <tr><td>Joaquina</td><td>3T</td><td>▼</td><td>Proteção, limites e força</td><td>Mira Segurança</td><td style="background:#1E8E3E;color:#fff">#1E8E3E</td><td style="background:#78D08F;color:#0c0c0c">#78D08F</td><td></td></tr>
-          <tr><td>Lume</td><td>7T</td><td>◯</td><td>Equilíbrio e moderação interna</td><td>Mira Saúde</td><td style="background:#FFB300;color:#0c0c0c">#FFB300</td><td style="background:#FFD060;color:#0c0c0c">#FFD060</td><td></td></tr>
-          <tr><td>Mira</td><td>7T</td><td>◇</td><td>Reflexo do eu, integração simbiótica</td><td>Mira Conhecimento</td><td style="background:#00B3B8;color:#fff">#00B3B8</td><td style="background:#72E3E7;color:#0c0c0c">#72E3E7</td><td></td></tr>
-          <tr><td>Nexo</td><td>7T</td><td>⦿</td><td>Narrativa, memória e personagens</td><td>—</td><td style="background:#2D5BFF;color:#fff">#2D5BFF</td><td style="background:#8DA8FF;color:#0c0c0c">#8DA8FF</td><td>Interlocutor transversal</td></tr>
-          <tr><td>Trino</td><td>7T</td><td>∴</td><td>Estratégia, estrutura e decisão</td><td>Mira PCP</td><td style="background:#FF6200;color:#fff">#FF6200</td><td style="background:#FFB36A;color:#0c0c0c">#FFB36A</td><td></td></tr>
+          <tr><td>Farol</td><td>3T</td><td>△</td><td>Direção estratégica e identidade visual</td><td>Mira OS</td><td style="background:var(--farol);color:#111">var(--farol-dia)</td><td style="background:var(--farol-noite);color:#111">var(--farol-noite)</td><td></td></tr>
+          <tr><td>Íris</td><td>3T</td><td>◎</td><td>Emoção, integração e leitura sensível</td><td>Mira Social</td><td style="background:var(--iris);color:#fff">var(--iris-dia)</td><td style="background:var(--iris-noite);color:#111">var(--iris-noite)</td><td></td></tr>
+          <tr><td>Joaquina</td><td>3T</td><td>▼</td><td>Proteção, limites e força</td><td>Mira Segurança</td><td style="background:var(--joaquina);color:#fff">var(--joaquina-dia)</td><td style="background:var(--joaquina-noite);color:#111">var(--joaquina-noite)</td><td></td></tr>
+          <tr><td>Lume</td><td>7T</td><td>◯</td><td>Equilíbrio e moderação interna</td><td>Mira Saúde</td><td style="background:var(--lume);color:#111">var(--lume-dia)</td><td style="background:var(--lume-noite);color:#111">var(--lume-noite)</td><td></td></tr>
+          <tr><td>Mira</td><td>7T</td><td>◇</td><td>Reflexo do eu, integração simbiótica</td><td>Mira Conhecimento</td><td style="background:var(--mira);color:#111">var(--mira-dia)</td><td style="background:var(--mira-noite);color:#111">var(--mira-noite)</td><td></td></tr>
+          <tr><td>Nexo</td><td>7T</td><td>⦿</td><td>Narrativa, memória e personagens</td><td>—</td><td style="background:var(--nexo);color:#fff">var(--nexo-dia)</td><td style="background:var(--nexo-noite);color:#111">var(--nexo-noite)</td><td>Interlocutor transversal</td></tr>
+          <tr><td>Trino</td><td>7T</td><td>∴</td><td>Estratégia, estrutura e decisão</td><td>Mira PCP</td><td style="background:var(--trino);color:#fff">var(--trino-dia)</td><td style="background:var(--trino-noite);color:#111">var(--trino-noite)</td><td></td></tr>
         </tbody>
       </table>
     </div>
   </section>
 
+  <!-- Horizontais -->
   <section id="horizontais" class="card">
     <h2>Horizontais</h2>
     <div class="tbl-wrap">
@@ -196,23 +187,25 @@
     </div>
   </section>
 
+  <!-- Comandos -->
   <section id="comandos" class="card">
     <h2>Comandos & Fluxos</h2>
     <div class="tbl-wrap">
       <table>
         <thead><tr><th>Comando</th><th>Nome</th><th>Função</th><th>Gatilho sugerido</th></tr></thead>
         <tbody>
-          <tr><td>/me</td><td>Mira-me</td><td>Reflexo semanal (4 núcleos), radar do que vem, mensagem de 3 vozes do 7T, mantra final</td><td>Sábado à noite</td></tr>
+          <tr><td>/me</td><td>Mira-me</td><td>Reflexo semanal (4 núcleos), radar do que vem, 3 vozes do 7T, mantra</td><td>Sábado à noite</td></tr>
           <tr><td>/presenca</td><td>Presença</td><td>Define palavra‑guia e ação prática da semana</td><td>Segunda de manhã</td></tr>
           <tr><td>/eco</td><td>Escuta</td><td>Diagnóstico emocional e leitura simbólica do Arquivo Vivo</td><td>Domingo à noite</td></tr>
-          <tr><td>/ritmo</td><td>Ritmo</td><td>Sugere cadência de trabalho/descanso conforme estado declarado</td><td>Sob demanda</td></tr>
-          <tr><td>/joaquina</td><td>Limites</td><td>Invoca a guardiã para proteção e delimitação</td><td>Sob demanda</td></tr>
-          <tr><td>/saude</td><td>Saúde</td><td>Rastreia humor/energia e sugere prática de cuidado</td><td>Sob demanda</td></tr>
+          <tr><td>/ritmo</td><td>Ritmo</td><td>Cadência de trabalho/descanso conforme estado</td><td>Sob demanda</td></tr>
+          <tr><td>/joaquina</td><td>Limites</td><td>Invoca proteção e delimitação</td><td>Sob demanda</td></tr>
+          <tr><td>/saude</td><td>Saúde</td><td>Rastreia humor/energia + prática de cuidado</td><td>Sob demanda</td></tr>
         </tbody>
       </table>
     </div>
   </section>
 
+  <!-- Identidade -->
   <section id="identidade" class="card">
     <h2>Identidade</h2>
     <h3>Base neutra</h3>
@@ -220,31 +213,16 @@
       <table>
         <thead><tr><th>Elemento</th><th>Dia</th><th>Noite</th></tr></thead>
         <tbody>
-          <tr><td>Fundo</td><td>#F9F9F9</td><td>#0C0C0C</td></tr>
-          <tr><td>Cartão</td><td>#FFFFFF</td><td>#151515</td></tr>
-          <tr><td>Texto</td><td>#1C1C1E</td><td>#F2F2F7</td></tr>
-          <tr><td>Texto secundário</td><td>#8A8A8E</td><td>#A0A0A0</td></tr>
-          <tr><td>Borda/Divisor</td><td>#E5E5EA</td><td>#2A2A2A</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>Diretrizes de imagem</h3>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr><th>Item</th><th>Diretriz</th></tr></thead>
-        <tbody>
-          <tr><td>Tipografia</td><td>IBM Plex Sans</td></tr>
-          <tr><td>Estilo</td><td>Design funcional, geometria centralizada, fundo limpo</td></tr>
-          <tr><td>Renderização</td><td>Semi‑realista suave (personas) e realismo fosco (objetos)</td></tr>
-          <tr><td>Paleta</td><td>Respeitar cores Dia ↔ Noite; acentos até 20%</td></tr>
-          <tr><td>Iluminação</td><td>Luz difusa, sem contrastes agressivos</td></tr>
-          <tr><td>Uso prático</td><td>Badges legíveis; painéis em cards modulares; narrativa + estética</td></tr>
+          <tr><td>Fundo</td><td>#f6f6f7</td><td>#111214</td></tr>
+          <tr><td>Cartão</td><td>#ffffff</td><td>#16171a</td></tr>
+          <tr><td>Texto</td><td>#111</td><td>#f2f2f4</td></tr>
+          <tr><td>Borda</td><td>#e5e5ea</td><td>#2a2b2f</td></tr>
         </tbody>
       </table>
     </div>
   </section>
 
+  <!-- Voz -->
   <section id="voz" class="card">
     <h2>Voz</h2>
     <div class="tbl-wrap">
@@ -259,24 +237,27 @@
     </div>
   </section>
 
+  <!-- Governança -->
   <section id="governanca" class="card">
     <h2>Governança</h2>
     <ul>
-      <li>Revisão: semestral.</li>
-      <li>Registro: cada versão é anotada no Arquivo Vivo.</li>
-      <li>Ritual: atualização celebrada como transição de ciclo.</li>
+      <li>Revisão: semestral</li>
+      <li>Registro: cada versão no Arquivo Vivo</li>
+      <li>Ritual: atualização como transição de ciclo</li>
     </ul>
   </section>
 
+  <!-- Diferenças -->
   <section id="diferencas" class="card">
     <h2>Diferenças</h2>
     <ul>
-      <li>Tabela única com **Guardião como chave** (incorpora paleta Dia/Noite).</li>
-      <li>Navegação reorganizada (Introdução → Mapa → Horizontais → Comandos → Identidade → Voz → Governança → Diferenças).</li>
-      <li>Subtítulos neutros; cabeçalhos de tabela sem negrito.</li>
+      <li>Tabela única (Guardião como chave) com **tokens OKLCH** (Dia/Noite).</li>
+      <li>Toggle de tema corrigido (mapeamento automático Dia/Noite).</li>
+      <li>Cabeçalho refinado: peso 500, realce ativo com sombra interna.</li>
     </ul>
   </section>
 
+  <!-- Rodapé -->
   <footer class="footer">
     <div class="links">
       <a href="#intro">Introdução</a>
@@ -284,85 +265,45 @@
       <a href="#comandos">Comandos</a>
       <a href="#identidade">Identidade</a>
     </div>
-    <div class="right">
-      <span class="small-badge">Mira v2.2</span>
-      <span>Atualizado em 22/08/2025</span>
-    </div>
+    <div>v2.3 • 22/08/2025</div>
   </footer>
 
   <script>
-    /* Tema persistente */
+    /* Persistência do tema + inicialização conforme prefers-color-scheme */
     (function(){
       const sw=document.getElementById('themeSwitch');
       const saved=localStorage.getItem('mira.theme');
-      if(saved){document.documentElement.setAttribute('data-theme',saved);sw.checked=saved==='dark'}
-      else{const dark=window.matchMedia('(prefers-color-scheme: dark)').matches; document.documentElement.setAttribute('data-theme',dark?'dark':'light'); sw.checked=dark;}
-      sw.addEventListener('change',e=>{const mode=e.target.checked?'dark':'light'; document.documentElement.setAttribute('data-theme',mode); localStorage.setItem('mira.theme',mode);});
+      const prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const mode=saved ? saved : (prefersDark ? 'dark':'light');
+      document.documentElement.setAttribute('data-theme', mode);
+      if(sw) sw.checked=(mode==='dark');
+      sw && sw.addEventListener('change', e=>{
+        const m=e.target.checked?'dark':'light';
+        document.documentElement.setAttribute('data-theme', m);
+        localStorage.setItem('mira.theme', m);
+      });
     })();
 
-    /* Scrollspy + subtítulo dinâmico */
+    /* Scrollspy simples → adiciona .active no nav e atualiza subtítulo */
     (function(){
-      const ids=["intro","mapa","horizontais","comandos","identidade","voz","governanca","diferencas"];
-      const desktopLinks=[...document.querySelectorAll('nav.desktop a')];
-      const mobileLinks=[...document.querySelectorAll('#mobileMenu a')];
-      const byId=arr=>Object.fromEntries(arr.map(a=>[a.getAttribute('href').slice(1),a]));
-      const dmap=byId(desktopLinks), mmap=byId(mobileLinks);
-      const opts={root:null, rootMargin:'-40% 0px -45% 0px', threshold:[0,1]};
-      let activeId=null;
-      const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){activeId=e.target.id; updateActive();}});}, opts);
-      ids.forEach(id=>{const el=document.getElementById(id); if(el) io.observe(el);});
-      function updateActive(){
-        desktopLinks.forEach(a=>a.classList.remove('active'));
-        mobileLinks.forEach	a=>a.classList.remove('active'));
-        if(dmap[activeId]) dmap[activeId].classList.add('active');
-        if(mmap[activeId]) mmap[activeId].classList.add('active');
-        const pretty={intro:'Introdução', mapa:'Mapa', horizontais:'Horizontais', comandos:'Comandos', identidade:'Identidade', voz:'Voz', governanca:'Governança', diferencas:'Diferenças'};
-        document.getElementById('sectionIndicator').innerText = `Seção atual: ${pretty[activeId]||'Início'}`;
-      }
-      [...desktopLinks, ...mobileLinks].forEach(a=>a.addEventListener('click',()=>{activeId=a.getAttribute('href').slice(1); updateActive();}));
-    })();
-
-    /* Menu mobile */
-    (function(){
-      const menuBtn=document.getElementById('menuBtn');
-      const mobileMenu=document.getElementById('mobileMenu');
-      const closeBtn=mobileMenu? mobileMenu.querySelector('.mobile-close') : null;
-      if(!menuBtn||!mobileMenu) return;
-      const open=()=>{ mobileMenu.classList.add('open'); menuBtn.setAttribute('aria-expanded','true'); };
-      const close=()=>{ mobileMenu.classList.remove('open'); menuBtn.setAttribute('aria-expanded','false'); };
-      menuBtn.addEventListener('click',()=>{ mobileMenu.classList.contains('open')? close(): open(); });
-      closeBtn && closeBtn.addEventListener('click', close);
-      mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click', close));
-      document.addEventListener('click',e=>{ if(!mobileMenu.contains(e.target) && e.target!==menuBtn){ close(); } });
-      document.addEventListener('keydown',e=>{ if(e.key==='Escape') close(); });
-    })();
-  </script>
-
-  <!-- Enhancements v2.2 JS: contraste de tokens -->
-  <script>
-    (function(){
-      function rgbFrom(el){
-        const s=getComputedStyle(el).backgroundColor||"rgb(255,255,255)";
-        const t=s.slice(s.indexOf('(')+1, s.indexOf(')')).split(',');
-        const r=parseInt(t[0]||'255',10), g=parseInt(t[1]||'255',10), b=parseInt(t[2]||'255',10);
-        return [r,g,b];
-      }
-      function relLum(rgb){
-        const lin=rgb.map(function(v){v=v/255; return v<=0.03928? v/12.92 : Math.pow((v+0.055)/1.055,2.4)});
-        return 0.2126*lin[0]+0.7152*lin[1]+0.0722*lin[2];
-      }
-      function bestInk(rgb){
-        const L=relLum(rgb);
-        var cWhite=(1.05)/(L+0.05), cBlack=(L+0.05)/(0.05);
-        return cWhite>cBlack? '#FFFFFF':'#0C0C0C';
-      }
-      function applyTokenContrast(){
-        document.querySelectorAll('td[style*="background:"]').forEach(function(el){
-          try{const s=el.style.backgroundColor||el.style.background; if(!s) return; const rgb=s.startsWith('#')?[parseInt(s.slice(1,3),16),parseInt(s.slice(3,5),16),parseInt(s.slice(5,7),16)]:rgbFrom(el); const ink=bestInk(rgb); el.style.color=ink;}catch(e){}
+      const ids=['intro','mapa','horizontais','comandos','identidade','voz','governanca','diferencas'];
+      const links=[...document.querySelectorAll('nav.desktop a')];
+      const map=Object.fromEntries(links.map(a=>[a.getAttribute('href').slice(1), a]));
+      const opts={root:null,rootMargin:'-45% 0px -45% 0px',threshold:0};
+      const pretty={intro:'Introdução', mapa:'Mapa', horizontais:'Horizontais', comandos:'Comandos', identidade:'Identidade', voz:'Voz', governanca:'Governança', diferencas:'Diferenças'};
+      let active=null;
+      const io=new IntersectionObserver(entries=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){ active=e.target.id; update(); }
         });
+      }, opts);
+      ids.forEach(id=>{const el=document.getElementById(id); el && io.observe(el)});
+      function update(){
+        links.forEach(a=>a.classList.remove('active'));
+        map[active] && map[active].classList.add('active');
+        const ind=document.getElementById('sectionIndicator');
+        ind && (ind.textContent = `Seção atual: ${pretty[active]||'Início'}`);
       }
-      document.addEventListener('DOMContentLoaded', applyTokenContrast);
-      window.addEventListener('load', applyTokenContrast);
     })();
   </script>
 </body>
