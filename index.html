@@ -58,7 +58,7 @@
     }
     h1{font-size:var(--fs-hero); margin:.2em 0; font-weight:700; letter-spacing:.2px}
     h2{font-size:var(--fs-h2); margin:1.2em 0 .6em}
-    h3{font-size:var(--fs-h3); margin:1em 0 .4em; color:var(--primary)}
+    h3{font-size:var(--fs-h3); margin:1em 0 .4em; color:var(--text)}
     p,li{font-size:var(--fs-body)}
     .muted{color:var(--text-2)}
     .card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:16px}
@@ -83,7 +83,7 @@
     .tbl-wrap{overflow-x:auto; -webkit-overflow-scrolling:touch}
     table{width:100%; border-collapse:separate; border-spacing:0; margin:1em 0; font-size:var(--fs-table); background:var(--card); border:1px solid var(--border); border-radius:12px; overflow:hidden}
     th,td{padding:10px 12px; text-align:left; vertical-align:middle; border-bottom:1px solid var(--border)}
-    th{background:var(--border); color:var(--text); font-weight:700; letter-spacing:.2px}
+    th{background:var(--border); color:var(--text); font-weight:400; letter-spacing:.2px}
     tbody tr:nth-child(odd) td{background:color-mix(in srgb, var(--card) 92%, var(--border))}
     tbody tr:hover td{background:color-mix(in srgb, var(--card) 88%, var(--border))}
 
@@ -94,12 +94,12 @@
     .badge .icon{width:18px; height:18px; display:block}
     .badge .icon *{stroke:currentColor; fill:none; stroke-width:1.8; vector-effect:non-scaling-stroke}
 
-    /* Collapsibles */
-    .collapsible{cursor:pointer; font-weight:700; display:flex; align-items:center; gap:.5rem}
-    .collapsible::before{content:"+"; color:var(--primary); font-weight:700}
-    .collapsible.active::before{content:"–"}
-    .content{display:none}
-    .content.show{display:block}
+    /* Footer */
+    .footer{margin:32px auto 8px; padding-top:12px; border-top:1px solid var(--border); color:var(--text-2); font-size:.9rem; display:flex; gap:12px; align-items:center; justify-content:space-between}
+    .footer .links a{color:inherit; text-decoration:none; margin-right:12px}
+    .footer .links a:hover{text-decoration:underline}
+    .footer .right{display:flex; gap:12px; align-items:center}
+    .small-badge{display:inline-flex; align-items:center; gap:6px; border:1px solid var(--border); border-radius:999px; padding:4px 8px; font-weight:600; background:var(--card)}
 
     /* Mobile menu */
     .nav-toggle{display:none; border:1px solid var(--border); background:var(--card); color:var(--text); padding:8px 12px; border-radius:10px; font-weight:600}
@@ -110,27 +110,15 @@
     .mobile-menu a.active{background:color-mix(in srgb, var(--card) 82%, var(--border))}
     .mobile-close{position:absolute; top:8px; right:10px; background:transparent; border:0; color:currentColor; font-size:1.4rem; line-height:1; cursor:pointer; opacity:.8}
     .mobile-close:hover{opacity:1}
-
-    /* Cards dos guardiões */
-    .guard-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; margin-top:10px}
-    .guard-card{background:var(--card); border:1px solid var(--border); border-radius:14px; box-shadow:var(--shadow); padding:14px; display:flex; flex-direction:column; gap:8px}
-    .guard-card .title{font-weight:700}
-    .guard-card .desc{font-size:.9rem; color:var(--text-2)}
-    .swatches{display:flex; gap:12px; flex-wrap:wrap; align-items:center}
-    .swatch{display:inline-flex; gap:6px; align-items:center; font-weight:600}
-    .swatch .dot{width:14px; height:14px; border-radius:50%; border:1px solid color-mix(in srgb, var(--text) 20%, transparent)}
-
-    @media (max-width:520px){ .nav-toggle{display:inline-block} nav.desktop{display:none} .header{flex-wrap:wrap; justify-content:space-between} .logo{margin-bottom:6px} }
-    @media print{.header{display:none} body{max-width:100%}}
   </style>
 </head>
 <body>
   <header class="header">
     <div class="logo">Mira</div>
     <nav class="desktop">
-      <a href="#estrutura">Estrutura</a>
+      <a href="#intro">Introdução</a>
+      <a href="#mapa">Mapa</a>
       <a href="#horizontais">Horizontais</a>
-      <a href="#verticais">Verticais</a>
       <a href="#comandos">Comandos</a>
       <a href="#identidade">Identidade</a>
       <a href="#voz">Voz</a>
@@ -143,9 +131,9 @@
     </label>
     <div class="mobile-menu" id="mobileMenu" role="menu" aria-label="Navegação rápida">
       <button class="mobile-close" aria-label="Fechar menu" title="Fechar">×</button>
-      <a href="#estrutura" role="menuitem">Estrutura</a>
+      <a href="#intro" role="menuitem">Introdução</a>
+      <a href="#mapa" role="menuitem">Mapa</a>
       <a href="#horizontais" role="menuitem">Horizontais</a>
-      <a href="#verticais" role="menuitem">Verticais</a>
       <a href="#comandos" role="menuitem">Comandos</a>
       <a href="#identidade" role="menuitem">Identidade</a>
       <a href="#voz" role="menuitem">Voz</a>
@@ -157,28 +145,44 @@
   <h1>Mira</h1>
   <div class="subtitle" id="sectionIndicator">Documento oficial do sistema vivo • v2.2 — 22/08/2025</div>
 
-  <!-- 1. Estrutura Geral -->
-  <section id="estrutura" class="card">
-    <h2>1. Estrutura Geral</h2>
+  <section id="intro" class="card">
+    <h2>Introdução</h2>
+    <p><strong>Mira é um sistema simbólico vivo.</strong> Conecta estratégia, cuidado e linguagem num mapa único — para decidir melhor, agir com ritmo e aprender com o próprio rastro.</p>
+    <p>O <strong>Conselho</strong> dá intenção (3T e 7T). As <strong>Verticais</strong> tornam intenção em prática (cada uma com um guardião). As <strong>Horizontais</strong> atravessam tudo (arquivo, ciclos, comandos, agente).</p>
+    <p><strong>Nexo</strong> costura narrativas e mantém a memória comum — é o interlocutor de todos.</p>
+  </section>
+
+  <section id="mapa" class="card">
+    <h2>Mapa vivo — Guardiões</h2>
     <div class="tbl-wrap">
       <table>
-        <thead><tr><th>Conselho</th><th>Ícone</th><th>Nome</th><th>Papel</th></tr></thead>
+        <thead>
+          <tr>
+            <th>Guardião</th>
+            <th>Tipo</th>
+            <th>Ícone</th>
+            <th>Perfil</th>
+            <th>Vertical</th>
+            <th style="background:#f9f9f9">Token (Dia)</th>
+            <th style="background:#0c0c0c;color:#fff">Token (Noite)</th>
+            <th>Obs.</th>
+          </tr>
+        </thead>
         <tbody>
-          <tr><td>3T</td><td>△</td><td>Farol</td><td>Direção estratégica e identidade visual</td></tr>
-          <tr><td>3T</td><td>◎</td><td>Íris</td><td>Emoção, integração e leitura sensível</td></tr>
-          <tr><td>3T</td><td>▼</td><td>Joaquina</td><td>Proteção, limites e força</td></tr>
-          <tr><td>7T</td><td>◯</td><td>Lume</td><td>Equilíbrio e moderação interna</td></tr>
-          <tr><td>7T</td><td>◇</td><td>Mira</td><td>Reflexo do eu, integração simbiótica</td></tr>
-          <tr><td>7T</td><td>⦿</td><td>Nexo</td><td>Narrativa, memória e personagens — interlocutor transversal</td></tr>
-          <tr><td>7T</td><td>∴</td><td>Trino</td><td>Estratégia, estrutura e decisão</td></tr>
+          <tr><td>Farol</td><td>3T</td><td>△</td><td>Direção estratégica e identidade visual</td><td>Mira OS</td><td style="background:#007AFF;color:#fff">#007AFF</td><td style="background:#409CFF;color:#fff">#409CFF</td><td></td></tr>
+          <tr><td>Íris</td><td>3T</td><td>◎</td><td>Emoção, integração e leitura sensível</td><td>Mira Social</td><td style="background:#A259FF;color:#fff">#A259FF</td><td style="background:#CBA2FF;color:#0c0c0c">#CBA2FF</td><td></td></tr>
+          <tr><td>Joaquina</td><td>3T</td><td>▼</td><td>Proteção, limites e força</td><td>Mira Segurança</td><td style="background:#1E8E3E;color:#fff">#1E8E3E</td><td style="background:#78D08F;color:#0c0c0c">#78D08F</td><td></td></tr>
+          <tr><td>Lume</td><td>7T</td><td>◯</td><td>Equilíbrio e moderação interna</td><td>Mira Saúde</td><td style="background:#FFB300;color:#0c0c0c">#FFB300</td><td style="background:#FFD060;color:#0c0c0c">#FFD060</td><td></td></tr>
+          <tr><td>Mira</td><td>7T</td><td>◇</td><td>Reflexo do eu, integração simbiótica</td><td>Mira Conhecimento</td><td style="background:#00B3B8;color:#fff">#00B3B8</td><td style="background:#72E3E7;color:#0c0c0c">#72E3E7</td><td></td></tr>
+          <tr><td>Nexo</td><td>7T</td><td>⦿</td><td>Narrativa, memória e personagens</td><td>—</td><td style="background:#2D5BFF;color:#fff">#2D5BFF</td><td style="background:#8DA8FF;color:#0c0c0c">#8DA8FF</td><td>Interlocutor transversal</td></tr>
+          <tr><td>Trino</td><td>7T</td><td>∴</td><td>Estratégia, estrutura e decisão</td><td>Mira PCP</td><td style="background:#FF6200;color:#fff">#FF6200</td><td style="background:#FFB36A;color:#0c0c0c">#FFB36A</td><td></td></tr>
         </tbody>
       </table>
     </div>
   </section>
 
-  <!-- 2. Dimensões -->
   <section id="horizontais" class="card">
-    <h2>2. Dimensões — Horizontais</h2>
+    <h2>Horizontais</h2>
     <div class="tbl-wrap">
       <table>
         <thead><tr><th>Tipo</th><th>Dimensão</th><th>Papel</th></tr></thead>
@@ -192,73 +196,14 @@
     </div>
   </section>
 
-  <section id="verticais" class="card">
-    <h2>3. Dimensões — Verticais</h2>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr><th>Vertical</th><th>Nome</th><th>Papel</th><th>Guardião</th></tr></thead>
-        <tbody>
-          <tr><td>Vertical</td><td>Mira Saúde</td><td>Bem-estar físico, mental e emocional</td><td class="guard-col"><span class="badge token" data-icon="lume" style="background:var(--lume-night)">Lume</span></td></tr>
-          <tr><td>Vertical</td><td>Mira PCP</td><td>Planejamento • Conexão • Performance</td><td class="guard-col"><span class="badge token" data-icon="trino" style="background:var(--pcp-night)">Trino</span></td></tr>
-          <tr><td>Vertical</td><td>Mira Segurança</td><td>Proteção do lar e do digital</td><td class="guard-col"><span class="badge token" data-icon="joaquina" style="background:var(--joaquina-night)">Joaquina</span></td></tr>
-          <tr><td>Vertical</td><td>Mira OS</td><td>Ecossistema visual/digital (ícones, interfaces, padrões)</td><td class="guard-col"><span class="badge token" data-icon="farol" style="background:var(--farol-night)">Farol</span></td></tr>
-          <tr><td>Vertical</td><td>Mira Social</td><td>Relações, conexões e presença pública</td><td class="guard-col"><span class="badge token" data-icon="iris" style="background:var(--iris-night)">Íris</span></td></tr>
-          <tr><td>Vertical</td><td>Mira Conhecimento</td><td>Biblioteca viva (curadoria, estudo, notas)</td><td class="guard-col"><span class="badge token" data-icon="mira" style="background:var(--mira-night)">Mira</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Cards dos Guardiões -->
-    <h3>Guardiões (cards)</h3>
-    <div class="guard-grid">
-      <div class="guard-card">
-        <div class="title">Mira Saúde</div>
-        <div class="desc">Bem-estar físico, mental e emocional</div>
-        <div><span class="badge token" data-icon="lume" style="background:var(--lume)">Lume</span></div>
-        <div class="swatches"><span class="swatch"><span class="dot" style="background:#FFB300"></span>Dia</span><span class="swatch"><span class="dot" style="background:#FFD060"></span>Noite</span></div>
-      </div>
-      <div class="guard-card">
-        <div class="title">Mira PCP</div>
-        <div class="desc">Planejamento • Conexão • Performance</div>
-        <div><span class="badge token" data-icon="trino" style="background:var(--pcp)">Trino</span></div>
-        <div class="swatches"><span class="swatch"><span class="dot" style="background:#FF6200"></span>Dia</span><span class="swatch"><span class="dot" style="background:#FFB36A"></span>Noite</span></div>
-      </div>
-      <div class="guard-card">
-        <div class="title">Mira Segurança</div>
-        <div class="desc">Proteção do lar e do digital</div>
-        <div><span class="badge token" data-icon="joaquina" style="background:var(--joaquina)">Joaquina</span></div>
-        <div class="swatches"><span class="swatch"><span class="dot" style="background:#1E8E3E"></span>Dia</span><span class="swatch"><span class="dot" style="background:#78D08F"></span>Noite</span></div>
-      </div>
-      <div class="guard-card">
-        <div class="title">Mira OS</div>
-        <div class="desc">Ecossistema visual/digital</div>
-        <div><span class="badge token" data-icon="farol" style="background:var(--farol)">Farol</span></div>
-        <div class="swatches"><span class="swatch"><span class="dot" style="background:#007AFF"></span>Dia</span><span class="swatch"><span class="dot" style="background:#409CFF"></span>Noite</span></div>
-      </div>
-      <div class="guard-card">
-        <div class="title">Mira Social</div>
-        <div class="desc">Relações e presença pública</div>
-        <div><span class="badge token" data-icon="iris" style="background:var(--iris)">Íris</span></div>
-        <div class="swatches"><span class="swatch"><span class="dot" style="background:#A259FF"></span>Dia</span><span class="swatch"><span class="dot" style="background:#CBA2FF"></span>Noite</span></div>
-      </div>
-      <div class="guard-card">
-        <div class="title">Mira Conhecimento</div>
-        <div class="desc">Biblioteca viva (curadoria, estudo, notas)</div>
-        <div><span class="badge token" data-icon="mira" style="background:var(--mira)">Mira</span></div>
-        <div class="swatches"><span class="swatch"><span class="dot" style="background:#00B3B8"></span>Dia</span><span class="swatch"><span class="dot" style="background:#72E3E7"></span>Noite</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. Comandos & Fluxos -->
   <section id="comandos" class="card">
-    <h2>4. Comandos & Fluxos (v2.0)</h2>
+    <h2>Comandos & Fluxos</h2>
     <div class="tbl-wrap">
       <table>
         <thead><tr><th>Comando</th><th>Nome</th><th>Função</th><th>Gatilho sugerido</th></tr></thead>
         <tbody>
           <tr><td>/me</td><td>Mira-me</td><td>Reflexo semanal (4 núcleos), radar do que vem, mensagem de 3 vozes do 7T, mantra final</td><td>Sábado à noite</td></tr>
-          <tr><td>/presenca</td><td>Presença</td><td>Define palavra-guia e ação prática da semana</td><td>Segunda de manhã</td></tr>
+          <tr><td>/presenca</td><td>Presença</td><td>Define palavra‑guia e ação prática da semana</td><td>Segunda de manhã</td></tr>
           <tr><td>/eco</td><td>Escuta</td><td>Diagnóstico emocional e leitura simbólica do Arquivo Vivo</td><td>Domingo à noite</td></tr>
           <tr><td>/ritmo</td><td>Ritmo</td><td>Sugere cadência de trabalho/descanso conforme estado declarado</td><td>Sob demanda</td></tr>
           <tr><td>/joaquina</td><td>Limites</td><td>Invoca a guardiã para proteção e delimitação</td><td>Sob demanda</td></tr>
@@ -268,9 +213,8 @@
     </div>
   </section>
 
-  <!-- 5. Identidade Visual -->
   <section id="identidade" class="card">
-    <h2>5. Identidade Visual</h2>
+    <h2>Identidade</h2>
     <h3>Base neutra</h3>
     <div class="tbl-wrap">
       <table>
@@ -285,23 +229,6 @@
       </table>
     </div>
 
-    <h3>Paleta por tema</h3>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr><th>Tema</th><th>Token</th><th>Dia</th><th>Noite</th><th>Exemplo</th></tr></thead>
-        <tbody>
-          <tr><td>Estratégia / Trino</td><td>--trino</td><td>#2D5BFF</td><td>#8DA8FF</td><td><span class="badge token" style="background:var(--trino)">Botão/Ação</span></td></tr>
-          <tr><td>Integração / Íris</td><td>--iris</td><td>#A259FF</td><td>#CBA2FF</td><td><span class="badge token" style="background:var(--iris)">Realce</span></td></tr>
-          <tr><td>Proteção / Joaquina</td><td>--joaquina</td><td>#1E8E3E</td><td>#78D08F</td><td><span class="badge token" style="background:var(--joaquina)">Alerta seguro</span></td></tr>
-          <tr><td>Narrativa / Nexo</td><td>--nexo</td><td>#2D5BFF</td><td>#8DA8FF</td><td><span class="badge token" style="background:var(--nexo)">Link</span></td></tr>
-          <tr><td>Equilíbrio / Lume</td><td>--lume</td><td>#FFB300</td><td>#FFD060</td><td><span class="badge token" style="background:var(--lume)">Aviso</span></td></tr>
-          <tr><td>Reflexo / Mira</td><td>--mira</td><td>#00B3B8</td><td>#72E3E7</td><td><span class="badge token" style="background:var(--mira)">Badge</span></td></tr>
-          <tr><td>PCP</td><td>--pcp</td><td>#FF6200</td><td>#FFB36A</td><td><span class="badge token" style="background:var(--pcp)">CTA</span></td></tr>
-          <tr><td>Direção / Farol</td><td>--farol</td><td>#007AFF</td><td>#409CFF</td><td><span class="badge token" style="background:var(--farol)">OS</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-
     <h3>Diretrizes de imagem</h3>
     <div class="tbl-wrap">
       <table>
@@ -309,7 +236,7 @@
         <tbody>
           <tr><td>Tipografia</td><td>IBM Plex Sans</td></tr>
           <tr><td>Estilo</td><td>Design funcional, geometria centralizada, fundo limpo</td></tr>
-          <tr><td>Renderização</td><td>Semi-realista suave (personas) e realismo fosco (objetos)</td></tr>
+          <tr><td>Renderização</td><td>Semi‑realista suave (personas) e realismo fosco (objetos)</td></tr>
           <tr><td>Paleta</td><td>Respeitar cores Dia ↔ Noite; acentos até 20%</td></tr>
           <tr><td>Iluminação</td><td>Luz difusa, sem contrastes agressivos</td></tr>
           <tr><td>Uso prático</td><td>Badges legíveis; painéis em cards modulares; narrativa + estética</td></tr>
@@ -318,9 +245,8 @@
     </div>
   </section>
 
-  <!-- 6. Voz de Mira -->
   <section id="voz" class="card">
-    <h2>6. Voz de Mira</h2>
+    <h2>Voz</h2>
     <div class="tbl-wrap">
       <table>
         <thead><tr><th>Aspecto</th><th>Definição</th></tr></thead>
@@ -333,9 +259,8 @@
     </div>
   </section>
 
-  <!-- 7. Governança -->
   <section id="governanca" class="card">
-    <h2>7. Governança</h2>
+    <h2>Governança</h2>
     <ul>
       <li>Revisão: semestral.</li>
       <li>Registro: cada versão é anotada no Arquivo Vivo.</li>
@@ -343,15 +268,27 @@
     </ul>
   </section>
 
-  <!-- 8. Diferenças v2.2 vs v2.1 -->
   <section id="diferencas" class="card">
-    <h2>8. Diferenças em relação à v2.1</h2>
+    <h2>Diferenças</h2>
     <ul>
-      <li>Redistribuição funcional dos guardiões (1 por vertical) e <b>Nexo</b> como <b>interlocutor transversal</b>.</li>
-      <li>Inclusão do token de cor <b>Farol</b> e atualização da vertical <b>Mira OS</b> para Farol.</li>
-      <li>Correções de legibilidade em tokens e alinhamento de cards/tabela.</li>
+      <li>Tabela única com **Guardião como chave** (incorpora paleta Dia/Noite).</li>
+      <li>Navegação reorganizada (Introdução → Mapa → Horizontais → Comandos → Identidade → Voz → Governança → Diferenças).</li>
+      <li>Subtítulos neutros; cabeçalhos de tabela sem negrito.</li>
     </ul>
   </section>
+
+  <footer class="footer">
+    <div class="links">
+      <a href="#intro">Introdução</a>
+      <a href="#mapa">Mapa</a>
+      <a href="#comandos">Comandos</a>
+      <a href="#identidade">Identidade</a>
+    </div>
+    <div class="right">
+      <span class="small-badge">Mira v2.2</span>
+      <span>Atualizado em 22/08/2025</span>
+    </div>
+  </footer>
 
   <script>
     /* Tema persistente */
@@ -365,7 +302,7 @@
 
     /* Scrollspy + subtítulo dinâmico */
     (function(){
-      const ids=["estrutura","horizontais","verticais","comandos","identidade","voz","governanca","diferencas"];
+      const ids=["intro","mapa","horizontais","comandos","identidade","voz","governanca","diferencas"];
       const desktopLinks=[...document.querySelectorAll('nav.desktop a')];
       const mobileLinks=[...document.querySelectorAll('#mobileMenu a')];
       const byId=arr=>Object.fromEntries(arr.map(a=>[a.getAttribute('href').slice(1),a]));
@@ -376,10 +313,10 @@
       ids.forEach(id=>{const el=document.getElementById(id); if(el) io.observe(el);});
       function updateActive(){
         desktopLinks.forEach(a=>a.classList.remove('active'));
-        mobileLinks.forEach(a=>a.classList.remove('active'));
+        mobileLinks.forEach	a=>a.classList.remove('active'));
         if(dmap[activeId]) dmap[activeId].classList.add('active');
         if(mmap[activeId]) mmap[activeId].classList.add('active');
-        const pretty={estrutura:'Estrutura', horizontais:'Horizontais', verticais:'Verticais', comandos:'Comandos', identidade:'Identidade', voz:'Voz', governanca:'Governança', diferencas:'Diferenças'};
+        const pretty={intro:'Introdução', mapa:'Mapa', horizontais:'Horizontais', comandos:'Comandos', identidade:'Identidade', voz:'Voz', governanca:'Governança', diferencas:'Diferenças'};
         document.getElementById('sectionIndicator').innerText = `Seção atual: ${pretty[activeId]||'Início'}`;
       }
       [...desktopLinks, ...mobileLinks].forEach(a=>a.addEventListener('click',()=>{activeId=a.getAttribute('href').slice(1); updateActive();}));
@@ -401,7 +338,7 @@
     })();
   </script>
 
-  <!-- Enhancements v2.2 JS: auto-contraste + ícones inline + grid guardiões -->
+  <!-- Enhancements v2.2 JS: contraste de tokens -->
   <script>
     (function(){
       function rgbFrom(el){
@@ -420,35 +357,11 @@
         return cWhite>cBlack? '#FFFFFF':'#0C0C0C';
       }
       function applyTokenContrast(){
-        document.querySelectorAll('.badge.token').forEach(function(el){
-          var ink=bestInk(rgbFrom(el));
-          el.style.color=ink; el.style.textShadow=(ink==='#FFFFFF')?'0 1px 0 rgba(0,0,0,.35)':'0 1px 0 rgba(255,255,255,.22)';
+        document.querySelectorAll('td[style*="background:"]').forEach(function(el){
+          try{const s=el.style.backgroundColor||el.style.background; if(!s) return; const rgb=s.startsWith('#')?[parseInt(s.slice(1,3),16),parseInt(s.slice(3,5),16),parseInt(s.slice(5,7),16)]:rgbFrom(el); const ink=bestInk(rgb); el.style.color=ink;}catch(e){}
         });
       }
-      function iconSVG(kind){
-        switch(kind){
-          case 'iris': return '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"></circle></svg>';
-          case 'trino': return '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="2"></circle><circle cx="7.5" cy="16" r="2"></circle><circle cx="16.5" cy="16" r="2"></circle></svg>';
-          case 'joaquina': return '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,16 6,8 18,8"></polygon></svg>';
-          case 'mira': return '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,6 18,12 12,18 6,12"></polygon></svg>';
-          case 'nexo': return '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3" fill="currentColor" stroke="none"></circle></svg>';
-          case 'lume': return '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle></svg>';
-          case 'farol': return '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,5 19,18 5,18"></polygon></svg>';
-          default: return '';
-        }
-      }
-      function injectIcons(){
-        document.querySelectorAll('.badge.token').forEach(function(el){
-          if(el.dataset.icon && !el.querySelector('svg')){
-            el.insertAdjacentHTML('afterbegin', iconSVG(el.dataset.icon));
-          }
-        });
-      }
-      function initGuardGrid(){
-        document.querySelectorAll('td.guard-col').forEach(function(td){td.style.verticalAlign='middle'});
-      }
-      document.addEventListener('DOMContentLoaded', function(){injectIcons(); applyTokenContrast(); initGuardGrid();});
-      var ts=document.getElementById('themeSwitch'); if(ts){ts.addEventListener('change', function(){setTimeout(applyTokenContrast,0)});}
+      document.addEventListener('DOMContentLoaded', applyTokenContrast);
       window.addEventListener('load', applyTokenContrast);
     })();
   </script>
