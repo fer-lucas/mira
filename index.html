@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mira v2.3 • Documento Oficial</title>
+  <title>Mira v2.4 • Documento Oficial</title>
 
   <!-- Tipografia -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -60,20 +60,19 @@
        ------------------------------ */
     *{box-sizing:border-box}
     html,body{min-height:100%;height:auto}
-    body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 "IBM Plex Sans", ui-sans-serif, system-ui; padding:24px; max-width:1060px; margin-inline:auto; padding-top:80px}
-    h1{font-size:2.2rem;margin:.2em 0 .4em;font-weight:700}
+    body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 "IBM Plex Sans", ui-sans-serif, system-ui; padding:24px; max-width:1060px; margin-inline:auto; padding-top:84px}
+    h1{font-size:2.2rem;margin:.2em 0 .4em;font-weight:700;letter-spacing:.2px}
     h2{font-size:1.4rem;margin:1.2em 0 .6em;font-weight:600}
-    h3{font-size:1.1rem;margin:1em 0 .4em;font-weight:600;color:var(--fg)}
+    h3{font-size:1.05rem;margin:1em 0 .4em;font-weight:600;color:var(--fg)}
     p,li{font-size:0.95rem}
     .card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--elev);padding:16px}
     .muted{color:var(--muted-2)}
 
-    /* Header refinado (sem negrito exagerado) */
-    .header{position:fixed;top:0;left:0;right:0;z-index:20;backdrop-filter:blur(10px);
-      background:color-mix(in oklab, var(--bg), transparent 20%);border-bottom:1px solid var(--border)}
+    /* Header refinado */
+    .header{position:fixed;top:0;left:0;right:0;z-index:20;backdrop-filter:blur(10px);background:color-mix(in oklab, var(--bg), transparent 20%);border-bottom:1px solid var(--border)}
     .header-inner{max-width:1060px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:10px 24px}
     .logo{font-weight:700; letter-spacing:.2px}
-    nav.desktop{display:flex;gap:10px;align-items:center}
+    nav.desktop{display:flex;gap:8px;align-items:center}
     nav.desktop a{all:unset;cursor:pointer;padding:8px 10px;border-radius:10px;font-weight:500;color:var(--fg)}
     nav.desktop a:hover{background:color-mix(in oklab, var(--card), var(--border) 35%)}
     nav.desktop a.active{position:relative;background:color-mix(in oklab, var(--card), var(--border) 55%);box-shadow:inset 0 -2px 0 color-mix(in oklab, var(--trino), black 10%)}
@@ -97,12 +96,18 @@
     /* Badges */
     .badge{display:inline-grid;grid-auto-flow:column;align-items:center;gap:8px;line-height:1;border:1px solid var(--border);border-radius:999px;padding:8px 12px;font-weight:700}
 
+    /* Grid de cards demonstrativos */
+    .demo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
+    .demo-card{border:1px solid var(--border);border-radius:14px;background:var(--card);box-shadow:var(--elev);padding:12px;display:grid;gap:10px}
+    .demo-title{font-weight:600}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;border:1px solid var(--border);font-weight:600;text-decoration:none}
+
     /* Footer */
     .footer{margin:32px auto 8px;padding-top:12px;border-top:1px solid var(--border);color:var(--muted-2);font-size:.9rem;display:flex;gap:12px;align-items:center;justify-content:space-between}
     .footer .links a{color:inherit;text-decoration:none;margin-right:12px}
     .footer .links a:hover{text-decoration:underline}
 
-    /* Mobile menu mínimo */
+    /* Mobile */
     .nav-toggle{display:none}
     @media (max-width:560px){
       .nav-toggle{display:inline-block;border:1px solid var(--border);background:var(--card);color:var(--fg);padding:6px 10px;border-radius:10px;font-weight:600}
@@ -117,6 +122,7 @@
       <nav class="desktop">
         <a href="#intro">Introdução</a>
         <a href="#mapa">Mapa</a>
+        <a href="#showcase">Showcase</a>
         <a href="#horizontais">Horizontais</a>
         <a href="#comandos">Comandos</a>
         <a href="#identidade">Identidade</a>
@@ -131,7 +137,7 @@
   </header>
 
   <h1>Mira</h1>
-  <div class="subtitle muted" id="sectionIndicator">Documento oficial do sistema vivo • v2.3 — 22/08/2025</div>
+  <div class="subtitle muted" id="sectionIndicator">Documento oficial do sistema vivo • v2.4 — 22/08/2025</div>
 
   <!-- Introdução -->
   <section id="intro" class="card">
@@ -159,15 +165,42 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>Farol</td><td>3T</td><td>△</td><td>Direção estratégica e identidade visual</td><td>Mira OS</td><td style="background:var(--farol);color:#111">var(--farol-dia)</td><td style="background:var(--farol-noite);color:#111">var(--farol-noite)</td><td></td></tr>
-          <tr><td>Íris</td><td>3T</td><td>◎</td><td>Emoção, integração e leitura sensível</td><td>Mira Social</td><td style="background:var(--iris);color:#fff">var(--iris-dia)</td><td style="background:var(--iris-noite);color:#111">var(--iris-noite)</td><td></td></tr>
-          <tr><td>Joaquina</td><td>3T</td><td>▼</td><td>Proteção, limites e força</td><td>Mira Segurança</td><td style="background:var(--joaquina);color:#fff">var(--joaquina-dia)</td><td style="background:var(--joaquina-noite);color:#111">var(--joaquina-noite)</td><td></td></tr>
-          <tr><td>Lume</td><td>7T</td><td>◯</td><td>Equilíbrio e moderação interna</td><td>Mira Saúde</td><td style="background:var(--lume);color:#111">var(--lume-dia)</td><td style="background:var(--lume-noite);color:#111">var(--lume-noite)</td><td></td></tr>
-          <tr><td>Mira</td><td>7T</td><td>◇</td><td>Reflexo do eu, integração simbiótica</td><td>Mira Conhecimento</td><td style="background:var(--mira);color:#111">var(--mira-dia)</td><td style="background:var(--mira-noite);color:#111">var(--mira-noite)</td><td></td></tr>
-          <tr><td>Nexo</td><td>7T</td><td>⦿</td><td>Narrativa, memória e personagens</td><td>—</td><td style="background:var(--nexo);color:#fff">var(--nexo-dia)</td><td style="background:var(--nexo-noite);color:#111">var(--nexo-noite)</td><td>Interlocutor transversal</td></tr>
-          <tr><td>Trino</td><td>7T</td><td>∴</td><td>Estratégia, estrutura e decisão</td><td>Mira PCP</td><td style="background:var(--trino);color:#fff">var(--trino-dia)</td><td style="background:var(--trino-noite);color:#111">var(--trino-noite)</td><td></td></tr>
+          <tr><td>Farol</td><td>3T</td><td>△</td><td>Direção estratégica e identidade visual</td><td>Mira OS</td><td class="chip-cell" style="background:var(--farol-dia)">var(--farol-dia)</td><td class="chip-cell" style="background:var(--farol-noite)">var(--farol-noite)</td><td></td></tr>
+          <tr><td>Íris</td><td>3T</td><td>◎</td><td>Emoção, integração e leitura sensível</td><td>Mira Social</td><td class="chip-cell" style="background:var(--iris-dia)">var(--iris-dia)</td><td class="chip-cell" style="background:var(--iris-noite)">var(--iris-noite)</td><td></td></tr>
+          <tr><td>Joaquina</td><td>3T</td><td>▼</td><td>Proteção, limites e força</td><td>Mira Segurança</td><td class="chip-cell" style="background:var(--joaquina-dia)">var(--joaquina-dia)</td><td class="chip-cell" style="background:var(--joaquina-noite)">var(--joaquina-noite)</td><td></td></tr>
+          <tr><td>Lume</td><td>7T</td><td>◯</td><td>Equilíbrio e moderação interna</td><td>Mira Saúde</td><td class="chip-cell" style="background:var(--lume-dia)">var(--lume-dia)</td><td class="chip-cell" style="background:var(--lume-noite)">var(--lume-noite)</td><td></td></tr>
+          <tr><td>Mira</td><td>7T</td><td>◇</td><td>Reflexo do eu, integração simbiótica</td><td>Mira Conhecimento</td><td class="chip-cell" style="background:var(--mira-dia)">var(--mira-dia)</td><td class="chip-cell" style="background:var(--mira-noite)">var(--mira-noite)</td><td></td></tr>
+          <tr><td>Nexo</td><td>7T</td><td>⦿</td><td>Narrativa, memória e personagens</td><td>—</td><td class="chip-cell" style="background:var(--nexo-dia)">var(--nexo-dia)</td><td class="chip-cell" style="background:var(--nexo-noite)">var(--nexo-noite)</td><td>Interlocutor transversal</td></tr>
+          <tr><td>Trino</td><td>7T</td><td>∴</td><td>Estratégia, estrutura e decisão</td><td>Mira PCP</td><td class="chip-cell" style="background:var(--trino-dia)">var(--trino-dia)</td><td class="chip-cell" style="background:var(--trino-noite)">var(--trino-noite)</td><td></td></tr>
         </tbody>
       </table>
+    </div>
+  </section>
+
+  <!-- Showcase (UI kit mínimo com cards) -->
+  <section id="showcase" class="card">
+    <h2>Showcase</h2>
+    <div class="demo-grid">
+      <div class="demo-card">
+        <div class="demo-title">Ação primária (Trino)</div>
+        <a class="btn" style="background:var(--trino);color:#fff;border-color:transparent">∴ Continuar</a>
+        <p class="muted">Usar Trino para CTAs de fluxo e decisão.</p>
+      </div>
+      <div class="demo-card">
+        <div class="demo-title">Realce (Íris)</div>
+        <span class="badge" style="background:var(--iris)">◎ Íris</span>
+        <p class="muted">Íris para ênfases, tags e chips informativos.</p>
+      </div>
+      <div class="demo-card">
+        <div class="demo-title">Confirmado/Seguro (Joaquina)</div>
+        <div class="badge" style="background:var(--joaquina)">▼ Protegido</div>
+        <p class="muted">Joaquina comunica estados estáveis e limites.</p>
+      </div>
+      <div class="demo-card">
+        <div class="demo-title">Aviso (Lume)</div>
+        <div class="badge" style="background:var(--lume)">◯ Atenção</div>
+        <p class="muted">Lume chama atenção sem agressividade.</p>
+      </div>
     </div>
   </section>
 
@@ -208,6 +241,7 @@
   <!-- Identidade -->
   <section id="identidade" class="card">
     <h2>Identidade</h2>
+
     <h3>Base neutra</h3>
     <div class="tbl-wrap">
       <table>
@@ -217,6 +251,36 @@
           <tr><td>Cartão</td><td>#ffffff</td><td>#16171a</td></tr>
           <tr><td>Texto</td><td>#111</td><td>#f2f2f4</td></tr>
           <tr><td>Borda</td><td>#e5e5ea</td><td>#2a2b2f</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Aplicação dos tokens (exemplos)</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Elemento UI</th><th>Uso</th><th>Exemplo</th></tr></thead>
+        <tbody>
+          <tr><td>Botão/Ação</td><td>Ação primária contextual</td><td><span class="badge" style="background:var(--trino)">∴ Trino</span></td></tr>
+          <tr><td>Realce</td><td>Texto ou tag de ênfase</td><td><span class="badge" style="background:var(--iris)">◎ Íris</span></td></tr>
+          <tr><td>Alerta seguro</td><td>Confirmação, estado protegido</td><td><span class="badge" style="background:var(--joaquina)">▼ Joaquina</span></td></tr>
+          <tr><td>Link</td><td>Navegação e âncoras</td><td><span class="badge" style="background:var(--nexo)">⦿ Nexo</span></td></tr>
+          <tr><td>Aviso</td><td>Chamada de atenção neutra</td><td><span class="badge" style="background:var(--lume)">◯ Lume</span></td></tr>
+          <tr><td>Badge</td><td>Identificação e status</td><td><span class="badge" style="background:var(--mira)">◇ Mira</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Diretrizes de imagem (concisas)</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Item</th><th>Diretriz</th><th>Exemplo prático</th></tr></thead>
+        <tbody>
+          <tr><td>Tipografia</td><td>IBM Plex Sans 400–700</td><td>Títulos 600/700; corpo 400/500</td></tr>
+          <tr><td>Estilo</td><td>Geometria simples, fundo limpo</td><td>Cards modulares; grid 8px</td></tr>
+          <tr><td>Personas</td><td>Semi‑realista suave</td><td>Bordas macias; luz difusa</td></tr>
+          <tr><td>Objetos</td><td>Realismo fosco</td><td>Reflexos leves; sem brilho duro</td></tr>
+          <tr><td>Paleta</td><td>Tokens Dia/Noite; acentos ≤ 20%</td><td>Header neutro; realces com Íris</td></tr>
+          <tr><td>Contraste</td><td>Texto ≥ 4.5:1 (WCAG AA)</td><td>Autoajuste nos chips</td></tr>
         </tbody>
       </table>
     </div>
@@ -251,9 +315,10 @@
   <section id="diferencas" class="card">
     <h2>Diferenças</h2>
     <ul>
-      <li>Tabela única (Guardião como chave) com **tokens OKLCH** (Dia/Noite).</li>
-      <li>Toggle de tema corrigido (mapeamento automático Dia/Noite).</li>
-      <li>Cabeçalho refinado: peso 500, realce ativo com sombra interna.</li>
+      <li>Paleta <strong>OKLCH</strong> com fallback HSL e mapeamento automático Dia/Noite.</li>
+      <li>Header refinado, ativo com sombra interna, ".active" via scrollspy.</li>
+      <li>Tabela única por Guardião + showcase (UI kit mínimo).</li>
+      <li>Contraste automático nos chips e badges.</li>
     </ul>
   </section>
 
@@ -265,7 +330,7 @@
       <a href="#comandos">Comandos</a>
       <a href="#identidade">Identidade</a>
     </div>
-    <div>v2.3 • 22/08/2025</div>
+    <div>v2.4 • 22/08/2025</div>
   </footer>
 
   <script>
@@ -286,16 +351,14 @@
 
     /* Scrollspy simples → adiciona .active no nav e atualiza subtítulo */
     (function(){
-      const ids=['intro','mapa','horizontais','comandos','identidade','voz','governanca','diferencas'];
+      const ids=['intro','mapa','showcase','horizontais','comandos','identidade','voz','governanca','diferencas'];
       const links=[...document.querySelectorAll('nav.desktop a')];
       const map=Object.fromEntries(links.map(a=>[a.getAttribute('href').slice(1), a]));
       const opts={root:null,rootMargin:'-45% 0px -45% 0px',threshold:0};
-      const pretty={intro:'Introdução', mapa:'Mapa', horizontais:'Horizontais', comandos:'Comandos', identidade:'Identidade', voz:'Voz', governanca:'Governança', diferencas:'Diferenças'};
+      const pretty={intro:'Introdução', mapa:'Mapa', showcase:'Showcase', horizontais:'Horizontais', comandos:'Comandos', identidade:'Identidade', voz:'Voz', governanca:'Governança', diferencas:'Diferenças'};
       let active=null;
       const io=new IntersectionObserver(entries=>{
-        entries.forEach(e=>{
-          if(e.isIntersecting){ active=e.target.id; update(); }
-        });
+        entries.forEach(e=>{ if(e.isIntersecting){ active=e.target.id; update(); } });
       }, opts);
       ids.forEach(id=>{const el=document.getElementById(id); el && io.observe(el)});
       function update(){
@@ -304,6 +367,27 @@
         const ind=document.getElementById('sectionIndicator');
         ind && (ind.textContent = `Seção atual: ${pretty[active]||'Início'}`);
       }
+    })();
+
+    /* Contraste automático para células de token e badges de exemplo */
+    (function(){
+      function parseRGB(c){
+        const ctx=document.createElement('canvas').getContext('2d');
+        ctx.fillStyle=c; const s=ctx.fillStyle; // "rgb(r, g, b)"
+        const m=s.match(/rgba?\((\d+)\s*,\s*(\d+)\s*,\s*(\d+)/i);
+        return m? [parseInt(m[1],10),parseInt(m[2],10),parseInt(m[3],10)] : [255,255,255];
+      }
+      function relLum([r,g,b]){ const f=v=>{v/=255; return v<=0.03928? v/12.92:Math.pow((v+0.055)/1.055,2.4)}; return 0.2126*f(r)+0.7152*f(g)+0.0722*f(b); }
+      function contrast(rgb1,rgb2){ const L1=relLum(rgb1), L2=relLum(rgb2); const [a,b]=L1>L2?[L1,L2]:[L2,L1]; return (a+0.05)/(b+0.05); }
+      function bestInk(bg){ const rgb=parseRGB(bg); const white=[255,255,255], black=[17,17,17]; return contrast(rgb,white)>=contrast(rgb,black)? '#fff':'#111'; }
+      function apply(){
+        document.querySelectorAll('.chip-cell, .badge[style*="background"], .btn[style*="background"]').forEach(el=>{
+          const bg=getComputedStyle(el).backgroundColor; el.style.color=bestInk(bg);
+        });
+      }
+      document.addEventListener('DOMContentLoaded', apply);
+      window.addEventListener('load', apply);
+      const sw=document.getElementById('themeSwitch'); sw && sw.addEventListener('change', ()=>setTimeout(apply,0));
     })();
   </script>
 </body>
